@@ -4,7 +4,7 @@ from __future__ import division
 import os
 import sys
 from time import time
-
+from pdb import set_trace
 
 class Customer:
     """
@@ -22,10 +22,22 @@ class Random:
     """
     Defines custom random number generator
     """
-    def __init__(self): pass
+    def __init__(self):
 
-    def uniform(self, lo=0, hi=1):
+        self.ia = 16807
+        self.im = 2147483647
+        self.am = (1.0/self.im)
+        self.iq = 127773
+        self.ir = 2836
+        self.mask = 123459876
+
+
+    def seed(self, val=1):
+        self.seed = val
+
+
+    def rand0(self, lo=0, hi=1):
         """
         Uniform distribution
         """
-        for 
+        set_trace()
