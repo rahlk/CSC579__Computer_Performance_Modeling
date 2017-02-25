@@ -28,6 +28,12 @@ def __test_randexp():
         for _ in xrange(12):
             print("Seed={seed} | Random={rand_val}".format(seed=seed, rand_val=rand.randexp(lam=10)))
 
+def __test_histogram():
+    seeds = range(0,30)
+    rand = Random()
+    x = [rand.randexp(idum=seeds(n%30), lam=10) for n in xrange(10000)]
+    set_trace()
+
 
 if __name__ == "__main__":
-    __test_randexp()
+    __test_histogram()
