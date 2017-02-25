@@ -33,8 +33,8 @@ class Random:
         self.mask = 123459876
 
 
-    def seed(self, val=1):
-        self.seed = val
+    def set_seed(self, val=1):
+        self.idum = val
 
 
     def rand0(self):
@@ -47,5 +47,4 @@ class Random:
         if self.idum <0:
             self.idum += self.im
         ans = self.am * self.idum
-        self.idum = self.idum ^ self.mask
         return ans
