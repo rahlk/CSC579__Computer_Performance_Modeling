@@ -29,8 +29,8 @@ class Random:
         self.am = (1.0/self.im)
         self.iq = 127773
         self.ir = 2836
-        self.idum = hex(0)
-        self.mask = hex(123459876)
+        self.idum = 0
+        self.mask = 123459876
 
 
     def seed(self, val=1):
@@ -41,8 +41,8 @@ class Random:
         """
         Uniform distribution
         """
-        self.idum = hex(idum)
-        self.idum ^= self.mask
+        self.idum = idum if not self.idum == idum else self.idum
+        self.idum = int(hex(self.idum) & hex(self.mask), 16)
         set_trace()
         k = self.idum / self.iq
         self.idum = self.ia * (self.idum - k*self.iq) - self.ir * k
