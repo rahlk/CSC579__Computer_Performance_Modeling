@@ -29,7 +29,7 @@ class Random:
         self.am = (1.0/self.im)
         self.iq = 127773
         self.ir = 2836
-        self.idum = 0
+        self.idum = 12458
         self.mask = 123459876
 
 
@@ -37,16 +37,18 @@ class Random:
         self.seed = val
 
 
-    def rand0(self, idum=0):
+    def rand0(self):
         """
         Uniform distribution
         """
-        self.idum = idum if not self.idum == idum else self.idum
-        self.idum = self.idum ^ self.mask
-        k = self.idum / self.iq
-        self.idum = int(self.ia * (self.idum - k*self.iq) - self.ir * k)
+        # self.idum = idum if not self.idum == idum else self.idum
+        self.idum = long(self.idum ^ self.mask)
+        print("idum={}".format(self.idum))
+        k = long(self.idum / self.iq)
+        print("k={}".format(k))
+        self.idum = long(self.ia * (self.idum - k*self.iq) - self.ir * k)
         if self.idum <0:
             self.idum += self.im
         ans = self.am * self.idum
-        self.idum = self.idum ^ self.mask
+        # self.idum = self.idum ^ self.mask
         return ans
