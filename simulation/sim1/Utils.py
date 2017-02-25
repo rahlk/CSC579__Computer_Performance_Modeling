@@ -5,6 +5,7 @@ import os
 import sys
 from time import time
 from pdb import set_trace
+from numpy import log
 
 class Customer:
     """
@@ -37,10 +38,13 @@ class Random:
         self.idum = seed_val
 
 
-    def rand0(self):
+    def rand0(self, idnum=None):
         """
         Uniform distribution
         """
+        if idnum is not None:
+            self.set_seed(idnum)
+            
         self.idum = long(self.idum ^ self.mask)
         k = long(self.idum / self.iq)
         self.idum = long(self.ia * (self.idum - k*self.iq) - self.ir * k)
@@ -49,5 +53,11 @@ class Random:
         ans = self.am * self.idum
         return ans
 
+
+    def uniform(self, lo=0, hi=1):
+        return lo + (hi-lo)*self.rand0()
+
+
     def rand_exp():
+
         pass
