@@ -18,6 +18,11 @@ class Customer:
         self.depart_time = self.arrival_time
         self.service_time = self.arrival_time-self.depart_time
 
+class Server:
+    """
+    Simulate a Server
+    """
+    def __init__(self, K, )
 
 class Random:
     """
@@ -42,6 +47,7 @@ class Random:
         """
         Uniform distribution
         """
+
         if idnum is not None:
             self.set_seed(idnum)
 

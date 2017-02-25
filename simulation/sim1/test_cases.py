@@ -31,8 +31,8 @@ def __test_randexp():
 def __test_histogram():
     seeds = range(0,30)
     rand = Random()
-    x = [rand.randexp(lam=10) for n in xrange(10000)]
-    histogram(x)
+    x = [rand.rand0() for n in xrange(100000)]
+    histogram(x, N=1000)
     set_trace()
 
 
