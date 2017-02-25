@@ -44,7 +44,7 @@ class Random:
         """
         if idnum is not None:
             self.set_seed(idnum)
-            
+
         self.idum = long(self.idum ^ self.mask)
         k = long(self.idum / self.iq)
         self.idum = long(self.ia * (self.idum - k*self.iq) - self.ir * k)
@@ -56,6 +56,10 @@ class Random:
 
     def uniform(self, lo=0, hi=1):
         return lo + (hi-lo)*self.rand0()
+
+
+    def randint(self, lo=0, hi=100):
+        return int(self.uniform(lo, hi))
 
 
     def rand_exp():
