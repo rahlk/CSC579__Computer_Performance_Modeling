@@ -42,11 +42,11 @@ class Random:
         Uniform distribution
         """
         self.idum = idum if not self.idum == idum else self.idum
-        self.idum = self.idum & self.mask
+        self.idum = self.idum ^ self.mask
         k = self.idum / self.iq
         self.idum = int(self.ia * (self.idum - k*self.iq) - self.ir * k)
         if self.idum <0:
             self.idum += self.im
         ans = self.am * self.idum
-        self.idum = self.idum & self.mask
+        self.idum = self.idum ^ self.mask
         return ans
