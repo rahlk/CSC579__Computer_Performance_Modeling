@@ -3,7 +3,7 @@ from __future__ import division
 
 import os
 import sys
-from time import time
+from time import time, sleep
 from pdb import set_trace
 from numpy import log
 
@@ -15,14 +15,48 @@ class Customer:
         self.arrival_time = time()
         self.queued = False
         self.serviced = False
+        self.denied = False
         self.depart_time = self.arrival_time
-        self.service_time = self.arrival_time-self.depart_time
+        self.service_time = self.depart_time - self.arrival_time
 
 class Server:
     """
     Simulate a Server
     """
-    def __init__(self, K, )
+    def __init__(self, K):
+        self.queue_size = K
+        self.queue = []
+
+    @staticmethod
+    def get_service_time():
+        rand = Random()
+        return rand.exponential(lam=1)
+
+    def enqueue(self, customer):
+        if len(self.queue)<self.queue_size:
+            self.queue.append(customer)
+            customer.queued = True
+        else:
+            customer.queued = False
+
+    def dequeue(self, customer):
+        for customer_id, waiting in enumerate(self.queue):
+            if waiting == customer:
+                self.queue.pop(customer_id)
+
+    def service(self, customer):
+        service_time = get_service_time()
+        current_time = time()
+        customer.arrival_time = current_time
+        self.enqueue(customer)
+        if customer.queued:
+            wait(service_time)
+            customer.serviced = True
+            customer.depart_time = time()
+        else:
+            customer.denied = True
+            customer.depart_time = current_time
+
 
 class Random:
     """
@@ -64,11 +98,11 @@ class Random:
         return lo + (hi-lo)*self.rand0()
 
 
-    def randint(self, lo=0, hi=100):
+    def int(self, lo=0, hi=100):
         return int(self.uniform(lo, hi))
 
 
-    def randexp(self, lam=1, idnum=None):
+    def exponential(self, lam=1, idnum=None):
 
         if idnum is not None:
             self.set_seed(idnum)
