@@ -48,3 +48,6 @@ class Random:
             self.idum += self.im
         ans = self.am * self.idum
         return ans
+
+    def rand_exp():
+        pass
