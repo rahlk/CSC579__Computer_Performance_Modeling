@@ -33,8 +33,8 @@ class Random:
         self.mask = 123459876
 
 
-    def set_seed(self, val=1):
-        self.idum = val
+    def set_seed(self, seed_val=1):
+        self.idum = seed_val
 
 
     def rand0(self):
