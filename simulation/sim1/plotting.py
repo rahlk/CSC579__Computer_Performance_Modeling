@@ -7,10 +7,12 @@ from pdb import set_trace
 
 def histogram(x, N=50, x_label="X", y_label="Y", the_title="Title"):
     # histogram of the data
-    n, bins, patches = plot.hist(x, N, facecolor="gray", alpha=0.75, histtype='step')
-    # # add a 'best fit' line
+    plot.style.use('presentation')
+    plot.rcParams["font.family"] = "monospace"
+    n, bins, patches = plot.hist(x, N, color=[0.2, 0.2, 0.2], alpha=0, histtype='step')
+    # add a 'best fit' line
     # set_trace()
-    # 
+
     plot.xlabel(x_label)
     plot.ylabel(y_label)
     plot.title(the_title)
