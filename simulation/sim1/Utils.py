@@ -42,6 +42,7 @@ class Random:
         Uniform distribution
         """
         self.idum = idum
+        set_trace()
         self.idum ^= self.mask
         k = self.idum / self.iq
         self.idum = self.ia * (self.idum - k*self.iq) - self.ir * k
