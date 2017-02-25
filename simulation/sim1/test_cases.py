@@ -26,7 +26,7 @@ def __test_randexp():
         rand = Random()
         rand.set_seed(seed_val=seed)
         for _ in xrange(12):
-            print("Seed={seed} | Random={rand_val}".format(seed=seed, rand_val=rand.randexp(lambda=10)))
+            print("Seed={seed} | Random={rand_val}".format(seed=seed, rand_val=rand.randexp(lam=10)))
 
 
 if __name__ == "__main__":

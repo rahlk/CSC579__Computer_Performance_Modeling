@@ -62,7 +62,7 @@ class Random:
         return int(self.uniform(lo, hi))
 
 
-    def randexp(self, lambda=1, idnum=None):
+    def randexp(self, lam=1, idnum=None):
 
         if idnum is not None:
             self.set_seed(idnum)
@@ -71,4 +71,4 @@ class Random:
         while dummy == 0:
             dummy = self.rand0(idnum)
 
-        return -log(dummy)/lambda
+        return -log(dummy)/lam
