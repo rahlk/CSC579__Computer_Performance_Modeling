@@ -35,7 +35,7 @@ class Random:
 
 
     def set_seed(self, seed_val=1):
-        self.idum = seed_val
+        self.idum = long(seed_val)
 
 
     def rand0(self, idnum=None):
@@ -62,6 +62,13 @@ class Random:
         return int(self.uniform(lo, hi))
 
 
-    def rand_exp():
+    def randexp(self, a=1, idnum=None):
 
-        pass
+        if idnum is not None:
+            self.set_seed(idnum)
+
+        dummy = 0
+        while dummy == 0:
+            dummy = self.rand0(idnum)
+
+        return -log(dummy)/a
