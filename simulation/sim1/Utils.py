@@ -44,10 +44,9 @@ class Random:
         self.idum = idum if not self.idum == idum else self.idum
         self.idum = self.idum & self.mask
         k = self.idum / self.iq
-        self.idum = self.ia * (self.idum - k*self.iq) - self.ir * k
+        self.idum = int(self.ia * (self.idum - k*self.iq) - self.ir * k)
         if self.idum <0:
             self.idum += self.im
         ans = self.am * self.idum
-        set_trace()
         self.idum = self.idum & self.mask
         return ans
