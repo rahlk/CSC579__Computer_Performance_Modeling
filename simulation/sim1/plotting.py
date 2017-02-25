@@ -3,7 +3,7 @@ from __future__ import print_function
 import numpy as np
 import matplotlib.mlab as mlab
 import matplotlib.pyplot as plot
-
+from pdb import set_trace
 
 def histogram(x, N=50, x_label="X", y_label="Y", the_title="Title"):
     # histogram of the data
