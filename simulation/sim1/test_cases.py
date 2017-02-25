@@ -1,7 +1,7 @@
 from __future__ import print_function
 from Utils import Random
 from pdb import set_trace
-
+from plotting import histogram
 
 def __test_rand0():
     seeds = [1,5,34,98,76,34,56,99]
@@ -32,6 +32,7 @@ def __test_histogram():
     seeds = range(0,30)
     rand = Random()
     x = [rand.randexp(lam=10) for n in xrange(10000)]
+    histogram(x)
     set_trace()
 
 
