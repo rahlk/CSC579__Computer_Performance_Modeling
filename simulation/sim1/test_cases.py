@@ -18,7 +18,7 @@ def __test_uniform():
         rand = Random()
         rand.set_seed(seed_val=seed)
         for _ in xrange(12):
-            print("Seed={seed}|Random={rand_val}".format(seed=seed, rand_val=rand.uniform(lo=1, hi=10, as_int=True)))
+            print("Seed={seed} | Random={rand_val}".format(seed=seed, rand_val=rand.randint(lo=1, hi=10000)))
 
 
 if __name__ == "__main__":
