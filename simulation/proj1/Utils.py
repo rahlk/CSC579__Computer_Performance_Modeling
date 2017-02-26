@@ -14,8 +14,8 @@ class Customer:
     """
 
     def __init__(self, id):
-        self.id = i
-        self.arrival_time = None
+        self.id = id
+        self.arrival_time = 0
         self.queued = None
         self.serviced = None
         self.denied = None
