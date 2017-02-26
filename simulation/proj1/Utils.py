@@ -62,6 +62,7 @@ class Server:
             customer.serviced = True
             customer.depart_time = time() + wait_time
         else:
+            pass
 
 
 class Random:
