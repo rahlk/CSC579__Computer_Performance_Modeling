@@ -31,19 +31,14 @@ def simulate(l, server_lim, max_serviced, L, verbose):
     def worker():
         last_served = server.service(verbose)
 
-    def queuing(id):
+    def queuing(customer):
         """
         Dispatch incoming requests to queues
         """
+        customer = server.enqueue(customer)
+        customers.append(customer)
+        if verbose: logging.debug('Accepted: {} | Customers: {}'.format(customer.queued, len(customers)))
 
-        try:
-            customer = customers.pop(id)
-            customer = server.enqueue(customer)
-            customers.insert(id, customer)
-            if verbose: logging.debug('Accepted: {} | Customers: {}'.format(customer.queued, len(customers)))
-
-        except IndexError:
-            pass
 
 
     w = Thread(target=worker, name="Service-Thread")
@@ -53,8 +48,7 @@ def simulate(l, server_lim, max_serviced, L, verbose):
         next_customer_arrival = rand.exponential(lam=l)
         timer.wait_millisc(next_customer_arrival)
         customer_id += 1
-        customers.append(Customer(id=customer_id))
-        t = Thread(name=customer_id, target=queuing, args=(customer_id-1,))
+        t = Thread(name=customer_id, target=queuing, args=(Customer(id=customer_id),))
         t.start()
 
     server.kill = True
