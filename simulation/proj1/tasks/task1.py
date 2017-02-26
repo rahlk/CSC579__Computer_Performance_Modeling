@@ -32,7 +32,6 @@ def plot_loss_rate(x, y):
     set_trace()
 
 
-
 def task_1_serial():
     k = np.arange(0.05, 1, 0.1)
     C = (1e3, 1e5)
