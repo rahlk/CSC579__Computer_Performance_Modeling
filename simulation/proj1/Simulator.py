@@ -1,5 +1,6 @@
 import argparse
 import logging
+from pdb import set_trace
 from threading import Thread
 from Utils.MisclUtils import TimeUtil
 from Utils.RandomUtil import Random
@@ -48,7 +49,7 @@ def simulate(l, server_lim, max_serviced, L, verbose):
         timer.wait_millisc(next_customer_arrival)
         customer_id += 1
         customers.append(Customer(id=customer_id))
-        t = Thread(name=customer_id, target=queuing, args=(customer_id - 1,))
+        t = Thread(name=customer_id, target=queuing, args=(customer_id-1,))
         t.start()
 
     server.kill = True
@@ -73,4 +74,4 @@ if __name__ == '__main__':
                         help='Verbose mode. Print debug log.')
 
     args = parser.parse_args()
-    main(args.l, args.K, args.C, args.L, args.debug)
+    simulate(args.l, args.K, args.C, args.L, args.debug)

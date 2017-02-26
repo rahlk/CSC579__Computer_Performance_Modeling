@@ -33,18 +33,18 @@ def plot_loss_rate(x, y):
 
 
 def task_1_serial():
-    k = np.arange(0.05, 1, 0.1)
+    rho_list = np.arange(0.05, 1, 0.1)
     C = (1e3, 1e5)
-    serviced = map(functools.partial(simulate, K = 20, C=C[0], L=1), k)
+    serviced_pool = [map(functools.partial(simulate, server_lim = 20, max_serviced=lim, L=1, verbose=False), rho_list) for lim in C]
     set_trace()
 
 def task_1_parallel():
     rho_list = np.arange(0.05, 1, 0.1)
     C = (1e3, 1e5)
     pool_0 = multiprocessing.Pool(processes=10)
-    serviced = pool_0.map(functools.partial(simulate, server_lim = 20, max_serviced=C[1], L=1, verbose=False), rho_list)
+    serviced_pool = [pool_0.map(functools.partial(simulate, server_lim = 20, max_serviced=lim, L=1, verbose=False), rho_list) for lim in C]
     set_trace()
 
 if __name__ == "__main__":
-    task_1_parallel()
+    task_1_serial()
     # plot_loss_rate(x=None, y=None)

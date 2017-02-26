@@ -8,6 +8,10 @@ class TimeUtil:
     def sec_to_ms(sec):
         return sec*0.01
 
+    @staticmethod
+    def current_time():
+        return time.time()
+
     def wait_millisc(self, sec):
         time.sleep(self.sec_to_ms(sec))
 

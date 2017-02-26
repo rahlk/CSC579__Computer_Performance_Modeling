@@ -42,7 +42,7 @@ class Server:
         return self.rand.exponential(lam=1)
 
     def enqueue(self, customer):
-        current_time = time()
+        current_time = self.timer.current_time()
         customer.arrival_time = current_time
         if len(self.queue) < self.queue_size:
             self.queue.append(customer)
@@ -68,7 +68,7 @@ class Server:
                 self.timer.wait_millisc(service_time)
                 next_customer.serviced = True
                 next_customer.service_time = service_time
-                next_customer.depart_time = time()
+                next_customer.depart_time = self.timer.current_time()
                 last_served = self.dequeue(next_customer)
                 self.processed.append(last_served)
                 if verbose:
