@@ -8,9 +8,9 @@ import functools
 root = os.path.join(os.getcwd().split('proj1')[0], 'proj1')
 if root not in sys.path:
     sys.path.append(root)
-
 import numpy as np
-import multiprocessing as mp
+import multiprocessing
+from pdb import set_trace
 from Simulator import simulate
 
 
@@ -23,14 +23,12 @@ def customer_loss_rate(customers):
 def task_1_serial():
     k = np.arange(0.05, 1, 0.1)
     C = (1e3, 1e5)
-    customers = simulate(l=k, )
-    pass
+    serviced = map(functools.partial(simulate, K = 20, C=C[0], L=1), k)
 
 
 def task_1_parallel():
     k = np.arange(0.05, 1, 0.1)
     C = (1e3, 1e5)
-    pool_0 = mp.Pool
-    pool_0.map(functools.partial(l, K = 20, C=C[0], L=1), k)
-    # pool_1 = mp.Pool(functools.partial(l, K = 20, C=C[1], L=1), k)
-    pass
+    pool_0 = multiprocessing.Pool(processes=10)
+    serviced = pool_0.map(functools.partial(simulate, K = 20, C=C[0], L=1), k)
+    set_trace()
