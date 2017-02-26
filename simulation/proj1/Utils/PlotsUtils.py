@@ -7,6 +7,25 @@ import matplotlib.pyplot as plot
 from pdb import set_trace
 
 
+def line(x, y, x_label="X", y_label="Y", the_title="Title"):
+    """
+    Plot a histogram of the data
+    """
+    if axis is not None:
+        N = len(axis)
+
+    plot.style.use('fivethirtyeight')
+    plot.rcParams["font.family"] = "monospace"
+
+    n, bins, patches = plot.hist(x, N, facecolor=[0.5, 0.8, 0.5], alpha=0.75)
+
+    plot.xlabel(x_label)
+    plot.ylabel(y_label)
+    plot.title(the_title)
+    # if not axis is None:
+        # plot.axis([np.min(axis), np.max(axis), np.min(bins), np.max(bins)])
+    plot.show()
+
 def histogram(x, axis=None, N=50, x_label="X", y_label="Y", the_title="Title"):
     """
     Plot a histogram of the data
@@ -22,6 +41,6 @@ def histogram(x, axis=None, N=50, x_label="X", y_label="Y", the_title="Title"):
     plot.xlabel(x_label)
     plot.ylabel(y_label)
     plot.title(the_title)
-    if not axis is None:
-        plot.axis([np.min(axis), np.max(axis), np.min(bins), np.max(bins)])
+    # if not axis is None:
+        # plot.axis([np.min(axis), np.max(axis), np.min(bins), np.max(bins)])
     plot.show()
