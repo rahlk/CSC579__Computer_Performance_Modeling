@@ -1,22 +1,29 @@
 import argparse
 import logging
-from time import time
-from time import sleep
-from pdb import set_trace
 from threading import Thread
+from time import sleep
+
 from Utils.RandomUtil import Random
 from Utils.ServerUtil import Customer, Server
-from Utils.MisclUtils import StoppableThread
-from Utils.PlotsUtils import histogram
 
 logging.basicConfig(level=logging.DEBUG,
                     format='(Queuing Customer %(threadName)s) | %(message)s', )
 
 
-def simulate(l, server_lim, MAX_SERVICED, L, verbose):
+def simulate(l, server_lim, max_serviced, L, verbose):
+    """
+    Run simulation of a M//M/1/K queueing system
+
+    :param l: Lamdba for the distribution of interarrival
+    :param server_lim: The number of customers the server queue may hold
+    :param max_serviced: Number of customer served before the program terminates
+    :param L: Any integer such that 1<L<C
+    :param verbose: Print debug log
+    :return: customers: List of populated Customer objects.
+    """
+
     server = Server(K=server_lim)
     customers = []
-    current_time = time()
     customer_id = 0
     rand = Random()
 
@@ -24,7 +31,10 @@ def simulate(l, server_lim, MAX_SERVICED, L, verbose):
         last_served = server.service(verbose)
 
     def queuing(id):
-        """Dispatch incoming requests to queues"""
+        """
+        Dispatch incoming requests to queues
+        """
+
         customer = customers.pop(id)
         customer = server.enqueue(customer)
         customers.insert(id, customer)
@@ -33,7 +43,7 @@ def simulate(l, server_lim, MAX_SERVICED, L, verbose):
     w = Thread(target=worker, name="Service-Thread")
     w.start()
 
-    while len(server.processed) < MAX_SERVICED:
+    while len(server.processed) < max_serviced:
         next_customer_arrival = rand.exponential(lam=l)
         sleep(next_customer_arrival)
         customer_id += 1
@@ -43,6 +53,7 @@ def simulate(l, server_lim, MAX_SERVICED, L, verbose):
 
     server.kill = True
     return customers
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -54,7 +65,7 @@ if __name__ == '__main__':
                         help='The number of customers the server queue may '
                              'hold.\n DEFAULT --K 5.')
     parser.add_argument('--C', default=1000,
-                        help='Number of customer server before the program '
+                        help='Number of customed server before the program '
                              'terminates.\n DEFAULT --C 1000')
     parser.add_argument('--L', default=1,
                         help='Any integer such that 1<L<C.\n DEFAULT --L 1')
