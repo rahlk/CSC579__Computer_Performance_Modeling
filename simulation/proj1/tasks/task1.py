@@ -43,7 +43,7 @@ def task_1_parallel():
     C = (1e3)
     pool_0 = multiprocessing.Pool(processes=10)
     serviced_pool = [pool_0.map(functools.partial(simulate, server_lim = 20, max_serviced=lim, L=1, verbose=False), rho_list) for lim in C]
-    CLR = [[customer_loss_rate(s) for s in serviced] for serviced in serviced_pool
+    CLR = [[customer_loss_rate(s) for s in serviced] for serviced in serviced_pool]
     plot_loss_rate(rho_list, CLR[0])
     set_trace()
 
