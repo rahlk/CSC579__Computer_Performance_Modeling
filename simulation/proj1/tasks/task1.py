@@ -46,5 +46,5 @@ def task_1_parallel():
     set_trace()
 
 if __name__ == "__main__":
-    task_1_serial()
+    task_1_parallel()
     # plot_loss_rate(x=None, y=None)
