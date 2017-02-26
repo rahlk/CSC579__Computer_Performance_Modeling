@@ -1,4 +1,18 @@
 import threading
+import time
+
+class TimeUtil:
+    def __init__(self): pass
+
+    @staticmethod
+    def sec_to_ms(sec):
+        return sec*0.01
+
+    def wait_millisc(self, sec):
+        time.sleep(self.sec_to_ms(sec))
+
+    def wait_seconds():
+        time.sleep(sec)
 
 
 class StoppableThread(threading.Thread):

@@ -25,27 +25,12 @@ def customer_loss_rate(customers):
     return served / total
 
 
-def theoritical_loss_rate(rho, K):
-    """
-                        k
-               (1 - p) p
-      CLR =    ----------
-                     k + 1
-                1 - p
-
-    """
-    return (1-rho) * rho ** K / (1 - rho ** (K+1))
-
-
 def plot_loss_rate(x=None, CLR=None, CLR_theoritical=None):
     if x is None:
         x = np.arange(0.05, 1, 0.1)
-    if CLR is None:
-        CLR = [rand.uniform(0, 0.03) for _ in xrange(10)]
-    if CLR_theoritical is None:
-        CLR_theoritical = [theoritical_loss_rate(r, K=20) for r in np.arange(0.05, 1, 0.1)]
-
-    line2(x, CLR, x, CLR_theoritical)
+    if y is None:
+        y = [rand.exponential(lam=0.5) for _ in xrange(10)]
+    line(x, y)
     set_trace()
 
 
@@ -57,11 +42,9 @@ def task_4_serial():
 
 def task_4_parallel():
     rho_list = np.arange(0.05, 1, 0.1)
-    C = (1e3, 1e5)
-
     pool_0 = multiprocessing.Pool(processes=10)
 
-    serviced_pool = [pool_0.map(functools.partial(simulate, server_lim = 20, max_serviced=lim, L=1, verbose=False), rho_list) for lim in C]
+    serviced = pool_0.map(functools.partial(simulate, server_lim = 100, max_serviced=lim, L=1, verbose=False), rho_list)
 
     CLR = [[customer_loss_rate(s) for s in serviced] for serviced in serviced_pool]
     CLR_theoritical = [theoritical_loss_rate(r, K=20) for r in rho_list]
