@@ -6,6 +6,9 @@ import matplotlib.mlab as mlab
 import matplotlib.pyplot as plot
 from pdb import set_trace
 
+GRY_538 = "#666666ff"
+RED_538 = "#ff5e53ff"
+BLU_538 = "#4eb8ffff"
 
 def line(x, y, x_label="X", y_label="Y", the_title="Title"):
     """
@@ -30,7 +33,7 @@ def line2(x, y, x_1, y_1, x_label="X", y_label="Y", the_title="Title"):
     plot.style.use('fivethirtyeight')
     plot.rcParams["font.family"] = "monospace"
 
-    plot.plot(x, y, "#ff5e53ff", x_1, y_1, 'k', linewidth=2)
+    plot.plot(x, y, RED_538, x_1, y_1, GRY_538, linewidth=2)
 
     plot.xlabel(x_label)
     plot.ylabel(y_label)
