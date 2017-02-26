@@ -38,12 +38,13 @@ def simulate(l, server_lim, max_serviced, L, verbose):
 
         try:
             customer = customers.pop(id)
-        except IndexError:
-            set_trace()
+            customer = server.enqueue(customer)
+            customers.insert(id, customer)
+            if verbose: logging.debug('Accepted: {} | Customers: {}'.format(customer.queued, len(customers)))
 
-        customer = server.enqueue(customer)
-        customers.insert(id, customer)
-        if verbose: logging.debug('Accepted: {} | Customers: {}'.format(customer.queued, len(customers)))
+        except IndexError:
+            pass
+
 
     w = Thread(target=worker, name="Service-Thread")
     w.start()
@@ -63,7 +64,7 @@ def simulate(l, server_lim, max_serviced, L, verbose):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--l', default=0.85,
+    parser.add_argument('--l', default=0.85, type=float,
                         help='Lamdba for the distribution of interarrival '
                              'times.\n DEFAULT --l 0.85.')
     parser.add_argument('--K', default=5,
