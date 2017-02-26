@@ -25,7 +25,8 @@ def customer_loss_rate(customers):
 def plot_loss_rate(x, y):
     if x is None:
         x = np.arange(0.05, 1, 0.1)
-    y = [rand.uniform(0, 1) for _ in xrange(1e5)]
+    if y is None:
+        y = [rand.uniform(0, 1) for _ in xrange(100000)]
     set_trace()
 
 
@@ -45,4 +46,4 @@ def task_1_parallel():
 
 if __name__ == "__main__":
     # task_1_parallel()
-    plot_loss_rate()
+    plot_loss_rate(x=None, y=None)
