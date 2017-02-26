@@ -7,10 +7,13 @@ import matplotlib.pyplot as plot
 from pdb import set_trace
 
 
-def histogram(x, N=50, x_label="X", y_label="Y", the_title="Title"):
+def histogram(x, axis=None, N=50, x_label="X", y_label="Y", the_title="Title"):
     """
     Plot a histogram of the data
     """
+    if axis is not None:
+        N = len(axis)
+
     plot.style.use('fivethirtyeight')
     plot.rcParams["font.family"] = "monospace"
 
@@ -19,5 +22,5 @@ def histogram(x, N=50, x_label="X", y_label="Y", the_title="Title"):
     plot.xlabel(x_label)
     plot.ylabel(y_label)
     plot.title(the_title)
-
+    if not axis is None: plot.axis(axis)
     plot.show()
