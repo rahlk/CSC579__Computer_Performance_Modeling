@@ -34,7 +34,6 @@ def theoritical_loss_rate(rho, K):
                 1 - p
 
     """
-    set_trace()
     return (1-rho) * rho ** K / (1 - rho ** (K+1))
 
 
