@@ -46,7 +46,7 @@ def simulate(l, server_lim, max_serviced, L, verbose):
 
     while len(server.processed) < max_serviced:
         next_customer_arrival = rand.exponential(lam=l)
-        timer.wait_millisc(next_customer_arrival)
+        timer.wait_microsc(next_customer_arrival)
         customer_id += 1
         t = Thread(name=customer_id, target=queuing, args=(Customer(id=customer_id),))
         t.start()
