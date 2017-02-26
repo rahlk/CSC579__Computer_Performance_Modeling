@@ -1,9 +1,10 @@
-from threading import Thread
+import logging
 from time import time
 from time import sleep
-import logging
 from pdb import set_trace
-from Utils import Customer, Server, Random, StoppableThread
+from threading import Thread
+from Utils.RandomUtil import Random
+from Utils.SimulationUtils import Customer, Server, StoppableThread
 
 logging.basicConfig(level=logging.DEBUG,
                     format='(Queuing Customer %(threadName)s) | %(message)s',)
@@ -13,7 +14,7 @@ def main():
     server = Server(K=10)
     customers = []
     current_time = time()
-    MAX_CUSTOMERS = 1e4
+    MAX_CUSTOMERS = 1e2
     customer_id = 0
     rand = Random()
 
