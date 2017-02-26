@@ -43,9 +43,9 @@ def task_1_parallel():
     k = np.arange(0.05, 1, 0.1)
     C = (1e3, 1e5)
     pool_0 = multiprocessing.Pool(processes=10)
-    serviced = pool_0.map(functools.partial(simulate, server_lim = 20, max_serviced=C[0], L=1, verbose=False), k)
+    serviced = pool_0.map(functools.partial(simulate, server_lim = 20, max_serviced=C[1], L=1, verbose=False), k)
     set_trace()
 
 if __name__ == "__main__":
-    # task_1_parallel()
-    plot_loss_rate(x=None, y=None)
+    task_1_parallel()
+    # plot_loss_rate(x=None, y=None)
