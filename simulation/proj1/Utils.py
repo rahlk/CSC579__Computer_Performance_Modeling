@@ -1,12 +1,25 @@
 from __future__ import print_function
 from __future__ import division
-
 import os
 import sys
+import threading
 from time import time, sleep
 from pdb import set_trace
 from numpy import log
 
+class StoppableThread(threading.Thread):
+    """Thread class with a stop() method. The thread itself has to check
+    regularly for the stopped() condition."""
+
+    def __init__(self, target=None, name=None):
+        super(StoppableThread, self).__init__(target=target, name=name)
+        self._stop = threading.Event()
+
+    def stop(self):
+        self._stop.set()
+
+    def stopped(self):
+        return self._stop.isSet()
 
 class Customer:
     """
@@ -33,12 +46,13 @@ class Server:
     def __init__(self, K):
         self.queue_size = K
         self.queue = []
+        self.rand = Random()
         self.processed = []
+        self.rejected = []
+        self.kill = False
 
-    @staticmethod
-    def get_service_time():
-        rand = Random()
-        return rand.exponential(lam=1)
+    def get_service_time(self):
+        return self.rand.exponential(lam=1)
 
     def enqueue(self, customer):
         current_time = time()
@@ -50,24 +64,25 @@ class Server:
             customer.queued = False
             customer.denied = True
             customer.depart_time = current_time
+            self.rejected.append(customer)
 
         return customer
 
     def dequeue(self, customer):
         for customer_postion, queued_customer in enumerate(self.queue):
             if queued_customer.id == customer.id:
-                return self.queue.pop(customer_id)
+                return self.queue.pop(customer_postion)
 
     def service(self):
-        for next_customer in self.queue:
-            if not next_customer.in_service:
-                service_time = get_service_time()
+        while not self.kill:
+            for next_customer in self.queue:
                 next_customer.in_service = True
+                service_time = self.get_service_time()
                 sleep(service_time)
                 next_customer.serviced = True
                 next_customer.service_time = service_time
                 next_customer.depart_time = time()
-                self.processed(self.dequeue(next_customer))
+                self.processed.append(self.dequeue(next_customer))
 
 
 class Random:
@@ -119,4 +134,4 @@ class Random:
         while dummy == 0:
             dummy = self.rand0(idnum)
 
-        return -log(dummy) / lam
+        return -log(dummy) * lam
