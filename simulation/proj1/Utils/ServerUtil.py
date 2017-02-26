@@ -3,8 +3,8 @@ from __future__ import division
 import os
 import sys
 from pdb import set_trace
-from time import time, sleep
 from RandomUtil import Random
+from MisclUtils import TimeUtil
 
 
 class Customer:
@@ -36,6 +36,7 @@ class Server:
         self.processed = []
         self.rejected = []
         self.kill = False
+        self.timer = TimeUtil()
 
     def get_service_time(self):
         return self.rand.exponential(lam=1)
@@ -64,7 +65,7 @@ class Server:
             for next_customer in self.queue:
                 next_customer.in_service = True
                 service_time = self.get_service_time()
-                sleep(service_time)
+                self.timer.wait_millisc(service_time)
                 next_customer.serviced = True
                 next_customer.service_time = service_time
                 next_customer.depart_time = time()

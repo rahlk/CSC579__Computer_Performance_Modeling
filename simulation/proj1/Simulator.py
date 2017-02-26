@@ -1,14 +1,14 @@
 import argparse
 import logging
 from threading import Thread
-from time import sleep
-
+from Utils.MisclUtils import TimeUtil
 from Utils.RandomUtil import Random
 from Utils.ServerUtil import Customer, Server
 
 logging.basicConfig(level=logging.DEBUG,
                     format='(Queuing Customer %(threadName)s) | %(message)s', )
 
+timer = TimeUtil()
 
 def simulate(l, server_lim, max_serviced, L, verbose):
     """
@@ -45,7 +45,7 @@ def simulate(l, server_lim, max_serviced, L, verbose):
 
     while len(server.processed) < max_serviced:
         next_customer_arrival = rand.exponential(lam=l)
-        sleep(next_customer_arrival)
+        timer.wait_millisc(next_customer_arrival)
         customer_id += 1
         customers.append(Customer(id=customer_id))
         t = Thread(name=customer_id, target=queuing, args=(customer_id - 1,))
