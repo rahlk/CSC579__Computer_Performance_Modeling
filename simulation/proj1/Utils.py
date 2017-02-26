@@ -17,6 +17,7 @@ class Customer:
         self.id = id
         self.arrival_time = 0
         self.queued = None
+        self.in_service = False
         self.serviced = None
         self.denied = None
         self.depart_time = self.arrival_time
@@ -32,6 +33,7 @@ class Server:
     def __init__(self, K):
         self.queue_size = K
         self.queue = []
+        self.processed = []
 
     @staticmethod
     def get_service_time():
@@ -54,16 +56,18 @@ class Server:
     def dequeue(self, customer):
         for customer_postion, queued_customer in enumerate(self.queue):
             if queued_customer.id == customer.id:
-                self.queue.pop(customer_id)
+                return self.queue.pop(customer_id)
 
     def service(self):
-        service_time = get_service_time()
-
-        for customer in self.queue:
-                wait_time = sleep(service_time)
-                customer.serviced = True
-                customer.depart_time = time() + wait_time
-                self.dequeue(customer)
+        for next_customer in self.queue:
+            if not next_customer.in_service:
+                service_time = get_service_time()
+                next_customer.in_service = True
+                sleep(service_time)
+                next_customer.serviced = True
+                next_customer.service_time = service_time
+                next_customer.depart_time = time()
+                self.processed(self.dequeue(next_customer))
 
 
 class Random:
