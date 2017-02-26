@@ -21,6 +21,7 @@ def main(l, server_lim, MAX_SERVICED, L, verbose):
 
     def worker():
         server.service()
+        if verbose: logging.debug('Serviced: {}'.format(server.processed[-1].id))
 
     def queuing(id):
         """thread worker function"""
@@ -47,7 +48,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--l', default=0.05, help='Lamdba for the distribution of interarrival times.')
+    parser.add_argument('--l', default=0.85, help='Lamdba for the distribution of interarrival times.')
     parser.add_argument('--K', default=5, help='The number of customers the server queue may hold.')
     parser.add_argument('--C', default=1000, help='Number of customer server before the program terminates.')
     parser.add_argument('--L', default=1, help='Any integer such that 1<L<C.')
