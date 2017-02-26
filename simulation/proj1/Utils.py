@@ -49,20 +49,21 @@ class Server:
             customer.denied = True
             customer.depart_time = current_time
 
+        return customer
+
     def dequeue(self, customer):
-        for customer_id, waiting in enumerate(self.queue):
-            if waiting == customer:
+        for customer_postion, queued_customer in enumerate(self.queue):
+            if queued_customer.id == customer.id:
                 self.queue.pop(customer_id)
 
-    def service(self, customer):
+    def service(self):
         service_time = get_service_time()
 
-        if customer.queued:
-            wait_time = sleep(service_time)
-            customer.serviced = True
-            customer.depart_time = time() + wait_time
-        else:
-            pass
+        for customer in self.queue:
+                wait_time = sleep(service_time)
+                customer.serviced = True
+                customer.depart_time = time() + wait_time
+                self.dequeue(customer)
 
 
 class Random:
