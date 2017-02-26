@@ -65,7 +65,7 @@ class Server:
             for next_customer in self.queue:
                 next_customer.in_service = True
                 service_time = self.get_service_time()
-                self.timer.wait_microsc(service_time)
+                self.timer.wait_millisc(service_time)
                 next_customer.serviced = True
                 next_customer.service_time = service_time
                 next_customer.depart_time = self.timer.current_time()

@@ -20,7 +20,7 @@ rand = Random()
 
 
 def customer_loss_rate(customers):
-    served = np.sum([customer.serviced for customer in customers])
+    served = np.sum([1 if customer.serviced == True else 0 for customer in customers])
     total = len(customers)
     return served / total
 
