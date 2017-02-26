@@ -17,6 +17,7 @@ logging.basicConfig(level=logging.DEBUG,
 @click.option('--C', default=1000, help='Number of customer server before the program terminates.')
 @click.option('--L', default=1, help='Any integer such that 1<L<C.')
 def main(l, K, C, L):
+    set_trace()
     server = Server(K=10)
     customers = []
     current_time = time()
@@ -36,7 +37,7 @@ def main(l, K, C, L):
     w.start()
 
     while len(server.processed) < C:
-        next_customer_arrival = rand.exponential(lam=L)
+        next_customer_arrival = rand.exponential(lam=l)
         sleep(next_customer_arrival)
         customer_id += 1
         customers.append(Customer(id=customer_id))
