@@ -13,8 +13,7 @@ logging.basicConfig(level=logging.DEBUG,
                     format='(Queuing Customer %(threadName)s) | %(message)s', )
 
 
-def main(l, server_lim, MAX_SERVICED, L, verbose):
-    # set_trace()
+def simulate(l, server_lim, MAX_SERVICED, L, verbose):
     server = Server(K=server_lim)
     customers = []
     current_time = time()
@@ -43,8 +42,7 @@ def main(l, server_lim, MAX_SERVICED, L, verbose):
         t.start()
 
     server.kill = True
-    set_trace()
-
+    return customers
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

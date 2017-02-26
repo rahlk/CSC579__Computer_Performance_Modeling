@@ -32,7 +32,7 @@ def __test_randexp():
         rand.set_seed(seed_val=seed)
         for _ in xrange(12):
             print("Seed={seed} | Random={rand_val}".format(seed=seed,
-                                                           rand_val=rand.randexp(
+                                                           rand_val=rand.exponential(
                                                                lam=10)))
 
 
