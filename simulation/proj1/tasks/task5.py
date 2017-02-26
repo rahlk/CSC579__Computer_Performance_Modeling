@@ -32,9 +32,9 @@ def task_5():
     rho_list = np.arange(0.05, 1, 0.1)
     elapsed = []
     for rho in rho_list:
-        print("Rho: {}".format(rho), end=" ")
-        current_time = timer.current_time()
-        serviced = simulate(l = rho, server_lim = 40, max_serviced=100000, L=1, verbose=True)
+        start_time = timer.current_time()
+        print("Rho: {} | Start Time: {} |".format(rho, ), end=" ")
+        serviced = simulate(l = rho, server_lim = 40, max_serviced=100000, L=1, verbose=False)
         end_time = timer.current_time()
         print("| Service Time: {}".format(end_time-start_time))
         elapsed.append(end_time-start_time)
