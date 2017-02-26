@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.DEBUG,
 @click.option('--K', default=5, help='The number of customers the server queue may hold.')
 @click.option('--C', default=1000, help='Number of customer server before the program terminates.')
 @click.option('--L', default=1, help='Any integer such that 1<L<C.')
-def main(l, K, MAX_SERVED, L):
+def main(l, K, C, L):
     server = Server(K=10)
     customers = []
     current_time = time()
@@ -35,7 +35,7 @@ def main(l, K, MAX_SERVED, L):
     w = Thread(target=worker, name="Service-Thread")
     w.start()
 
-    while len(server.processed) < MAX_SERVED:
+    while len(server.processed) < C:
         next_customer_arrival = rand.exponential(lam=L)
         sleep(next_customer_arrival)
         customer_id += 1
