@@ -11,9 +11,7 @@ def line(x, y, x_label="X", y_label="Y", the_title="Title"):
     """
     Plot a histogram of the data
     """
-    if axis is not None:
-        N = len(axis)
-
+    
     plot.style.use('fivethirtyeight')
     plot.rcParams["font.family"] = "monospace"
 
