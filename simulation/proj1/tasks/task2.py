@@ -38,15 +38,17 @@ def simulate_partial_func(K, C):
 
 def task_2_serial():
     k = np.arange(10, 101, 10)
-    C = (1e3, 1e5)
-    serviced = map(functools.partial(simulate, l =0.85, C=C[0], L=1), k)
+    C = (1e3, 1e4)
+    serviced = [map(functools.partial(
+    simulate_partial_func, C=max_serve), k) for max_serve in C]
     set_trace()
 
 def task_2_parallel():
     k = np.arange(10, 101, 10)
-    C = (1e3, 1e5)
+    C = (1e3, 1e4)
     pool_0 = multiprocessing.Pool(processes=10)
-    serviced = pool_0.map(functools.partial(simulate_partial_func, C=C[0]), k)
+    serviced_pool = [pool_0.map(functools.partial(
+    simulate_partial_func, C=max_serve), k) for max_serve in C]
     set_trace()
 
 if __name__ == "__main__":
