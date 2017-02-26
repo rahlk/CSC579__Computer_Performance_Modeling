@@ -6,6 +6,7 @@ import matplotlib.mlab as mlab
 import matplotlib.pyplot as plot
 from pdb import set_trace
 
+
 def histogram(x, N=50, x_label="X", y_label="Y", the_title="Title"):
     """
     Plot a histogram of the data

@@ -7,22 +7,27 @@ from time import time, sleep
 from pdb import set_trace
 from numpy import log
 
+
 class Customer:
     """
     Hold's customer data for simulation
     """
+
     def __init__(self):
-        self.arrival_time = time()
+        self.arrival_time = None
         self.queued = False
         self.serviced = False
         self.denied = False
         self.depart_time = self.arrival_time
-        self.service_time = self.depart_time - self.arrival_time
+        self.service_time = self.arrival_time
+        self.wait_time = self.depart_time - self.arrival_time - self.service_time
+
 
 class Server:
     """
     Simulate a Server
     """
+
     def __init__(self, K):
         self.queue_size = K
         self.queue = []
@@ -33,11 +38,15 @@ class Server:
         return rand.exponential(lam=1)
 
     def enqueue(self, customer):
-        if len(self.queue)<self.queue_size:
+        current_time = time()
+        customer.arrival_time = current_time
+        if len(self.queue) < self.queue_size:
             self.queue.append(customer)
             customer.queued = True
         else:
             customer.queued = False
+            customer.denied = True
+            customer.depart_time = current_time
 
     def dequeue(self, customer):
         for customer_id, waiting in enumerate(self.queue):
@@ -46,36 +55,31 @@ class Server:
 
     def service(self, customer):
         service_time = get_service_time()
-        current_time = time()
-        customer.arrival_time = current_time
-        self.enqueue(customer)
+
         if customer.queued:
-            wait(service_time)
+            wait_time = time() + service_time
             customer.serviced = True
-            customer.depart_time = time()
+            customer.depart_time = wait_time
         else:
-            customer.denied = True
-            customer.depart_time = current_time
 
 
 class Random:
     """
     Defines custom random number generator
     """
+
     def __init__(self):
 
         self.ia = 16807
         self.im = 2147483647
-        self.am = (1.0/self.im)
+        self.am = (1.0 / self.im)
         self.iq = 127773
         self.ir = 2836
         self.idum = 12458
         self.mask = 123459876
 
-
     def set_seed(self, seed_val=1):
         self.idum = long(seed_val)
-
 
     def rand0(self, idnum=None):
         """
@@ -87,20 +91,17 @@ class Random:
 
         self.idum = long(self.idum ^ self.mask)
         k = long(self.idum / self.iq)
-        self.idum = long(self.ia * (self.idum - k*self.iq) - self.ir * k)
-        if self.idum <0:
+        self.idum = long(self.ia * (self.idum - k * self.iq) - self.ir * k)
+        if self.idum < 0:
             self.idum += self.im
         ans = self.am * self.idum
         return ans
 
-
     def uniform(self, lo=0, hi=1):
-        return lo + (hi-lo)*self.rand0()
-
+        return lo + (hi - lo) * self.rand0()
 
     def int(self, lo=0, hi=100):
         return int(self.uniform(lo, hi))
-
 
     def exponential(self, lam=1, idnum=None):
 
@@ -111,4 +112,4 @@ class Random:
         while dummy == 0:
             dummy = self.rand0(idnum)
 
-        return -log(dummy)/lam
+        return -log(dummy) / lam
