@@ -20,8 +20,8 @@ def main(l, server_lim, MAX_SERVICED, L, verbose):
     rand = Random()
 
     def worker():
-        server.service()
-        if verbose: logging.debug('Serviced: {}'.format(server.processed[-1].id))
+        last_served = server.service(verbose)
+
 
     def queuing(id):
         """thread worker function"""

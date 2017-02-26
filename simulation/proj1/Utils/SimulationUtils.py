@@ -75,7 +75,7 @@ class Server:
             if queued_customer.id == customer.id:
                 return self.queue.pop(customer_postion)
 
-    def service(self):
+    def service(self, verbose=False):
         while not self.kill:
             for next_customer in self.queue:
                 next_customer.in_service = True
@@ -84,4 +84,7 @@ class Server:
                 next_customer.serviced = True
                 next_customer.service_time = service_time
                 next_customer.depart_time = time()
-                self.processed.append(self.dequeue(next_customer))
+                last_served = self.dequeue(next_customer)
+                self.processed.append(last_served)
+                if verbose:
+                    print("(Last Served Customer {})".format(last_served.id))
