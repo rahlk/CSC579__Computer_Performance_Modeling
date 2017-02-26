@@ -28,7 +28,7 @@ def plot_loss_rate(x, y):
         x = np.arange(0.05, 1, 0.1)
     if y is None:
         y = [rand.exponential(lam=0.5) for _ in xrange(100000)]
-    histogram(y, axis = x)
+    line(y, x)
     set_trace()
 
 

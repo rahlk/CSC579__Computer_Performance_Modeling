@@ -17,7 +17,7 @@ def line(x, y, x_label="X", y_label="Y", the_title="Title"):
     plot.style.use('fivethirtyeight')
     plot.rcParams["font.family"] = "monospace"
 
-    n, bins, patches = plot.hist(x, N, facecolor=[0.5, 0.8, 0.5], alpha=0.75)
+    plot.plot(x, y)
 
     plot.xlabel(x_label)
     plot.ylabel(y_label)
