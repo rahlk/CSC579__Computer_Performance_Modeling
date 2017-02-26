@@ -2,26 +2,10 @@ from __future__ import division
 
 import os
 import sys
-import threading
 from pdb import set_trace
 from time import time, sleep
 from RandomUtil import Random
 
-
-
-class StoppableThread(threading.Thread):
-    """Thread class with a stop() method. The thread itself has to check
-    regularly for the stopped() condition."""
-
-    def __init__(self, target=None, name=None):
-        super(StoppableThread, self).__init__(target=target, name=name)
-        self._stop = threading.Event()
-
-    def stop(self):
-        self._stop.set()
-
-    def stopped(self):
-        return self._stop.isSet()
 
 class Customer:
     """
@@ -87,4 +71,4 @@ class Server:
                 last_served = self.dequeue(next_customer)
                 self.processed.append(last_served)
                 if verbose:
-                    print("(Serving Customer {}  | Remaining: {})".format(last_served.id, self.queue_size - len(self.queue)))
+                    print("(Serving Customer {}) | Remaining: {}".format(last_served.id, self.queue_size - len(self.queue)))

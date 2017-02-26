@@ -5,7 +5,9 @@ from time import sleep
 from pdb import set_trace
 from threading import Thread
 from Utils.RandomUtil import Random
-from Utils.SimulationUtils import Customer, Server, StoppableThread
+from Utils.ServerUtil import Customer, Server
+from Utils.MisclUtils import StoppableThread
+from Utils.PlotsUtils import histogram
 
 logging.basicConfig(level=logging.DEBUG,
                     format='(Queuing Customer %(threadName)s) | %(message)s',)
