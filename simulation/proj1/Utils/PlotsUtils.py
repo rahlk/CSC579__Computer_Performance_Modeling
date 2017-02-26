@@ -30,7 +30,7 @@ def line2(x, y, x_1, y_1, x_label="X", y_label="Y", the_title="Title"):
     plot.style.use('fivethirtyeight')
     plot.rcParams["font.family"] = "monospace"
 
-    plot.plot(x, y, "r", x_1, y_1, 'k', linewidth=2)
+    plot.plot(x, y, "#ff5e53ff", x_1, y_1, 'k', linewidth=2)
 
     plot.xlabel(x_label)
     plot.ylabel(y_label)
