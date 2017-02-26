@@ -28,19 +28,19 @@ def plot_loss_rate(x, y):
         x = np.arange(0.05, 1, 0.1)
     if y is None:
         y = [rand.exponential(lam=0.5) for _ in xrange(10)]
-    line(x, y)
+    line(x, y, x_label=r"$\rho", y_label=r"CLR", the_title=r"$\mathrm{CLR\ vs.\ }\rho$"
     set_trace()
 
 
 def task_1_serial():
     rho_list = np.arange(0.05, 1, 0.1)
-    C = (1e3, 1e5)
+    C = [1e3, 1e5]
     serviced_pool = [map(functools.partial(simulate, server_lim = 20, max_serviced=lim, L=1, verbose=True), rho_list) for lim in C]
     set_trace()
 
 def task_1_parallel():
     rho_list = np.arange(0.05, 1, 0.1)
-    C = [1e3]
+    C = [1e4]
     pool_0 = multiprocessing.Pool(processes=10)
     serviced_pool = [pool_0.map(functools.partial(simulate, server_lim = 20, max_serviced=lim, L=1, verbose=False), rho_list) for lim in C]
     CLR = [[customer_loss_rate(s) for s in serviced] for serviced in serviced_pool]
