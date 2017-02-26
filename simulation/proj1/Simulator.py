@@ -36,10 +36,14 @@ def simulate(l, server_lim, max_serviced, L, verbose):
         Dispatch incoming requests to queues
         """
 
-        customer = customers.pop(id)
+        try:
+            customer = customers.pop(id)
+        except IndexError:
+            set_trace()
+
         customer = server.enqueue(customer)
         customers.insert(id, customer)
-        if verbose: logging.debug('Accepted: {}'.format(customer.queued))
+        if verbose: logging.debug('Accepted: {} | Customers: {}'.format(customer.queued, len(customers)))
 
     w = Thread(target=worker, name="Service-Thread")
     w.start()
