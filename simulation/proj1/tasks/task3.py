@@ -33,8 +33,9 @@ def theoritical_loss_rate(rho, K):
                      k + 1
                 1 - p
 
-      """
-    return (1-rho) * rho^K / (1 - rho ^ (K+1))
+    """
+    set_trace()
+    return (1-rho) * rho ** K / (1 - rho ** (K+1))
 
 
 def plot_loss_rate(x=None, CLR=None, CLR_theoritical=None):
