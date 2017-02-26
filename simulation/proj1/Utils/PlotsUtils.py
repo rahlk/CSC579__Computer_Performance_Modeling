@@ -22,5 +22,6 @@ def histogram(x, axis=None, N=50, x_label="X", y_label="Y", the_title="Title"):
     plot.xlabel(x_label)
     plot.ylabel(y_label)
     plot.title(the_title)
-    if not axis is None: plot.axis(axis)
+    if not axis is None:
+        plot.axis([np.min(axis), np.max(axis), np.min(bins), np.max(bins)])
     plot.show()
