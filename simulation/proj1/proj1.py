@@ -25,7 +25,7 @@ def main(l, server_lim, MAX_SERVICED, L, verbose):
         last_served = server.service(verbose)
 
     def queuing(id):
-        """thread worker function"""
+        """Dispatch incoming requests to queues"""
         customer = customers.pop(id)
         customer = server.enqueue(customer)
         customers.insert(id, customer)
