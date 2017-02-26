@@ -35,7 +35,7 @@ def plot_loss_rate(x, y):
 def task_1_serial():
     rho_list = np.arange(0.05, 1, 0.1)
     C = (1e3, 1e5)
-    serviced_pool = [map(functools.partial(simulate, server_lim = 20, max_serviced=lim, L=1, verbose=False), rho_list) for lim in C]
+    serviced_pool = [map(functools.partial(simulate, server_lim = 20, max_serviced=lim, L=1, verbose=True), rho_list) for lim in C]
     set_trace()
 
 def task_1_parallel():
