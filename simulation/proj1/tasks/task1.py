@@ -10,9 +10,11 @@ if root not in sys.path:
     sys.path.append(root)
 import numpy as np
 import multiprocessing
+from Utils.RandomUtil import Random
 from pdb import set_trace
 from Simulator import simulate
 
+rand = Random()
 
 def customer_loss_rate(customers):
     served = np.sum([customer.serviced for customer in customers])
@@ -20,11 +22,19 @@ def customer_loss_rate(customers):
     return served / total
 
 
+def plot_loss_rate(x, y):
+    if x is None:
+        x = np.arange(0.05, 1, 0.1)
+    y = [rand.uniform(0, 1) for _ in xrange(1e5)]
+    set_trace()
+
+
+
 def task_1_serial():
     k = np.arange(0.05, 1, 0.1)
     C = (1e3, 1e5)
     serviced = map(functools.partial(simulate, K = 20, C=C[0], L=1), k)
-
+    set_trace()
 
 def task_1_parallel():
     k = np.arange(0.05, 1, 0.1)
@@ -34,4 +44,5 @@ def task_1_parallel():
     set_trace()
 
 if __name__ == "__main__":
-    task_1_parallel()
+    # task_1_parallel()
+    plot_loss_rate()
