@@ -1,6 +1,7 @@
 from __future__ import division
 from numpy import log
 
+
 class Random:
     """
     Defines custom random number generator

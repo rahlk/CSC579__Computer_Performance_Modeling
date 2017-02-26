@@ -1,7 +1,7 @@
 from __future__ import print_function
-from Utils import Random
-from pdb import set_trace
-from plotting import histogram
+
+from Utils.RandomUtil import Random
+from Utils.PlotsUtils import histogram
 
 
 def __test_rand0():
@@ -41,7 +41,6 @@ def __test_histogram():
     rand = Random()
     x = [rand.rand0() for n in xrange(100000)]
     histogram(x, N=1000)
-    set_trace()
 
 
 if __name__ == "__main__":

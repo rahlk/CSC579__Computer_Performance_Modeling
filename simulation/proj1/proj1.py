@@ -10,7 +10,7 @@ from Utils.MisclUtils import StoppableThread
 from Utils.PlotsUtils import histogram
 
 logging.basicConfig(level=logging.DEBUG,
-                    format='(Queuing Customer %(threadName)s) | %(message)s',)
+                    format='(Queuing Customer %(threadName)s) | %(message)s', )
 
 
 def main(l, server_lim, MAX_SERVICED, L, verbose):
@@ -23,7 +23,6 @@ def main(l, server_lim, MAX_SERVICED, L, verbose):
 
     def worker():
         last_served = server.service(verbose)
-
 
     def queuing(id):
         """thread worker function"""
@@ -40,21 +39,29 @@ def main(l, server_lim, MAX_SERVICED, L, verbose):
         sleep(next_customer_arrival)
         customer_id += 1
         customers.append(Customer(id=customer_id))
-        t = Thread(name = customer_id, target=queuing, args=(customer_id-1,))
+        t = Thread(name=customer_id, target=queuing, args=(customer_id - 1,))
         t.start()
 
     server.kill = True
     set_trace()
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--l', default=0.85, help='Lamdba for the distribution of interarrival times. DEFAULT --l 0.85.')
-    parser.add_argument('--K', default=5, help='The number of customers the server queue may hold. DEFAULT --K 5.')
-    parser.add_argument('--C', default=1000, help='Number of customer server before the program terminates. DEFAULT --C 1000')
-    parser.add_argument('--L', default=1, help='Any integer such that 1<L<C. DEFAULT --L 1')
-    parser.add_argument('-v', '--debug', action='store_true', default=0, help='Verbose mode. Print debug log.')
+    parser.add_argument('--l', default=0.85,
+                        help='Lamdba for the distribution of interarrival '
+                             'times.\n DEFAULT --l 0.85.')
+    parser.add_argument('--K', default=5,
+                        help='The number of customers the server queue may '
+                             'hold.\n DEFAULT --K 5.')
+    parser.add_argument('--C', default=1000,
+                        help='Number of customer server before the program '
+                             'terminates.\n DEFAULT --C 1000')
+    parser.add_argument('--L', default=1,
+                        help='Any integer such that 1<L<C.\n DEFAULT --L 1')
+    parser.add_argument('-v', '--debug', action='store_true', default=0,
+                        help='Verbose mode. Print debug log.')
 
     args = parser.parse_args()
     main(args.l, args.K, args.C, args.L, args.debug)
