@@ -53,4 +53,3 @@ def task_2_parallel():
 
 if __name__ == "__main__":
     task_2_parallel()
-    # plot_loss_rate(x=None, y=None)
