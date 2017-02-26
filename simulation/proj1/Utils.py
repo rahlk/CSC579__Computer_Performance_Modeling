@@ -13,11 +13,12 @@ class Customer:
     Hold's customer data for simulation
     """
 
-    def __init__(self):
+    def __init__(self, id):
+        self.id = i
         self.arrival_time = None
-        self.queued = False
-        self.serviced = False
-        self.denied = False
+        self.queued = None
+        self.serviced = None
+        self.denied = None
         self.depart_time = self.arrival_time
         self.service_time = self.arrival_time
         self.wait_time = self.depart_time - self.arrival_time - self.service_time
@@ -57,9 +58,9 @@ class Server:
         service_time = get_service_time()
 
         if customer.queued:
-            wait_time = time() + service_time
+            wait_time = sleep(service_time)
             customer.serviced = True
-            customer.depart_time = wait_time
+            customer.depart_time = time() + wait_time
         else:
 
 
