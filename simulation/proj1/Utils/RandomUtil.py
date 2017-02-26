@@ -50,4 +50,4 @@ class Random:
         while dummy == 0:
             dummy = self.rand0(idnum)
 
-        return -log(dummy) * lam
+        return -log(dummy) / lam
