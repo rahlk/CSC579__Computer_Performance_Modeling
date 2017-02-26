@@ -11,7 +11,7 @@ if root not in sys.path:
 import numpy as np
 import multiprocessing
 from Utils.RandomUtil import Random
-from Utils.PlotsUtils import histogram
+from Utils.PlotsUtils import histogram, line
 from pdb import set_trace
 from Simulator import simulate
 
