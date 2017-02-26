@@ -31,7 +31,6 @@ def main():
 
     while len(customers) < MAX_CUSTOMERS:
         next_customer_arrival = rand.exponential(lam=0.05)
-        # print(next_customer_arrival)
         sleep(next_customer_arrival)
         customer_id += 1
         customers.append(Customer(id=customer_id))
@@ -39,7 +38,6 @@ def main():
         t.start()
 
     server.kill = True
-
     set_trace()
 
 if __name__ == '__main__':
