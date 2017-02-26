@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.DEBUG,
 
 
 @click.command()
-@click.option('--lamda', default=0.05, help='\lamdba for the distribution of interarrival times.')
+@click.option('--l', default=0.05, help='Lamdba for the distribution of interarrival times.')
 @click.option('--K', default=5, help='The number of customers the server queue may hold.')
 @click.option('--C', default=1000, help='Number of customer server before the program terminates.')
 @click.option('--L', default=1, help='Any integer such that 1<L<C.')
