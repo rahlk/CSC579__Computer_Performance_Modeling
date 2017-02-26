@@ -11,11 +11,11 @@ def line(x, y, x_label="X", y_label="Y", the_title="Title"):
     """
     Plot a histogram of the data
     """
-    
+
     plot.style.use('fivethirtyeight')
     plot.rcParams["font.family"] = "monospace"
 
-    plot.plot(x, y)
+    plot.plot(x, y, linewidth=2)
 
     plot.xlabel(x_label)
     plot.ylabel(y_label)
