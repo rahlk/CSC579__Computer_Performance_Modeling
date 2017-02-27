@@ -45,7 +45,7 @@ def plot_loss_rate(x, CLR, CLR_theoritical, label):
 
 
 def task_3():
-    C = (1e1, 1e2)
+    C = (1e3, 1e5)
     rho_list = np.arange(0.05, 1, 0.1)
     pool_0 = multiprocessing.Pool(processes=10)
     CLR_theoritical = [theoritical_loss_rate(r, K=20) for r in rho_list]
@@ -53,7 +53,7 @@ def task_3():
     CLR = []
     for lim in C:
         serviced_pool = pool_0.map(
-            functools.partial(simulate, server_lim=5, max_serviced=lim, L=1,
+            functools.partial(simulate, server_lim=10, max_serviced=lim, L=1,
                               verbose=False), rho_list)
         CLR.append([customer_loss_rate(s) for s in serviced_pool])
 
