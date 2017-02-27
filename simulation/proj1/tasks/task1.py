@@ -17,10 +17,10 @@ from Simulator import simulate
 
 rand = Random()
 
-def customer_loss_rate(customers):
-    served = np.sum([1 if customer.serviced == True else 0 for customer in customers])
-    total = len(customers)
-    return served / total
+def customer_loss_rate(server):
+    denied = len(server.rejected)
+    total = len(server.rejected+server.accepted)
+    return denied / total
 
 
 def plot_loss_rate(x, y):

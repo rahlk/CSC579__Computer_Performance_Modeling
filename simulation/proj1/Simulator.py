@@ -52,7 +52,7 @@ def simulate(l, server_lim, max_serviced, L, verbose):
         t.start()
 
     server.kill = True
-    return customers
+    return server
 
 
 if __name__ == '__main__':

@@ -10,7 +10,7 @@ GRY_538 = "#666666ff"
 RED_538 = "#ff5e53ff"
 BLU_538 = "#4eb8ffff"
 
-def line(x, y, x_label="X", y_label="Y", the_title="Title", x_min=0, x_max=1, y_min=0, y_max=1):
+def line(x, y, axis="auto", x_label="X", y_label="Y", the_title="Title", x_min=0, x_max=1, y_min=0, y_max=1):
     """
     Plot a histogram of the data
     """
@@ -23,7 +23,8 @@ def line(x, y, x_label="X", y_label="Y", the_title="Title", x_min=0, x_max=1, y_
     plot.xlabel(x_label)
     plot.ylabel(y_label)
     plot.title(the_title)
-    plot.axis([x_min, x_max, y_min, y_max])
+    if not axis == "auto":
+        plot.axis([x_min, x_max, y_min, y_max])
     plot.show()
 
 def line2(x, y, x_1, y_1, x_label="X", y_label="Y", the_title="Title"):
