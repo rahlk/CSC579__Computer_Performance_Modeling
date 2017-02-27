@@ -33,17 +33,8 @@ def plot_loss_rate(x, y_1, y_2):
     set_trace()
 
 
-def task_1_serial():
-    rho_list = np.arange(0.05, 1, 0.1)
+def task_1():
     C = [1e3, 1e5]
-    serviced_pool = [map(
-        functools.partial(simulate, server_lim=20, max_serviced=lim, L=1,
-                          verbose=True), rho_list) for lim in C]
-    set_trace()
-
-
-def task_1_parallel():
-    C = [1e3, 1e4]
     rho_list = np.arange(0.05, 1, 0.1)
     pool_0 = multiprocessing.Pool(processes=10)
     CLR = []
@@ -53,8 +44,12 @@ def task_1_parallel():
                               verbose=False), rho_list)
         CLR.append([customer_loss_rate(s) for s in serviced_pool])
 
-    plot_loss_rate(rho_list, CLR[0], CLR[1])
-    # set_trace()
+    data = pd.DataFrame([[a,b,c] for a, b, c in zip(rho_list, CLR[0], CLR[1])], columns=["Rho", "CLR (C=1000)", "CLR (C=100000)"])
+    data.to_csv(os.path.abspath(os.path.join(root,"tasks/task1.csv")))
+
+def task1_plot():
+    data = pd.read_csv(os.path.abspath(os.path.join(root,"tasks/task3.csv")))
+    plot_loss_rate(data["Rho"], data["CLR (C=1000)"], data["CLR (Theoritic)"], label="CLR (C=1000)")
 
 
 if __name__ == "__main__":
