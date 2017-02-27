@@ -36,15 +36,16 @@ def plot_runtime_vs_avg(x, y, y_1):
 
 def task_5():
     rho_list = np.arange(0.05, 1, 0.1)
+    C = 1e5
     elapsed = []
-    print("Rho,Seconds")
     for rho in rho_list:
         start_time = timer.current_time()
-        print("{}".format(rho), end=",")
-        serviced = simulate(l = rho, server_lim = 40, max_serviced=100000, L=1, verbose=False)
+        serviced = simulate(l = rho, server_lim = 40, max_serviced=C, L=1, verbose=False)
         end_time = timer.current_time()
-        print("{}".format(round(end_time-start_time,2)))
         elapsed.append(end_time-start_time)
+
+    data = pd.DataFrame([[a,b] for a, b in zip(rho_list, elapsed)], columns=["Rho", "Seconds"])
+    data.to_csv(os.path.abspath(os.path.join(root,"tasks/task5.csv")))
 
 def task5_plot():
     data = pd.read_csv(os.path.abspath("tasks/task5.csv"))
@@ -60,5 +61,6 @@ def compare_plot():
 
 
 if __name__ == "__main__":
+    task_5()
     task5_plot()
-    # compare_plot()
+    compare_plot()
