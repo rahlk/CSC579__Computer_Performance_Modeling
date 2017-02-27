@@ -41,7 +41,7 @@ def task_5():
         elapsed.append(end_time-start_time)
 
 def csv_to_plot():
-    data = pd.read_csv("task5.csv")
+    data = pd.read_csv(os.path.abspath("tasks/task5.csv"))
     set_trace()
     plot_runtime(rho_list, elapsed)
 
