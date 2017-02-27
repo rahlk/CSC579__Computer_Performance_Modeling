@@ -22,7 +22,7 @@ class Customer:
         self.depart_time = self.arrival_time
         self.service_time = self.arrival_time
 
-    def get_wait_time(self)
+    def get_wait_time(self):
         self.wait_time = self.depart_time - self.arrival_time - self.service_time
         return self.wait_time
 
