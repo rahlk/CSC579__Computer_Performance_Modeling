@@ -136,3 +136,7 @@ ENV/
 
 # Scratchpad code
 scratchpad*
+
+# Charts and CSVs and stuff
+*.csv
+
