@@ -27,7 +27,7 @@ def customer_loss_rate(server):
     return denied / total
 
 
-def plot_loss_rate(x, y_1, y_2):
+def plot_loss_rate(x, y_1, y_2, label_1, label_2):
     line2(x, y_1, x, y_2, label_1="C=$10^3$", label_2="C=$10^5$",
           x_label=r"$\rho$", y_label=r"CLR",
           the_title=r"$\mathrm{CLR\ vs.\ }\rho$")
@@ -50,7 +50,7 @@ def task_1():
 
 def task1_plot():
     data = pd.read_csv(os.path.abspath(os.path.join(root,"tasks/task1.csv")))
-    plot_loss_rate(data["Rho"], data["CLR (C=1e3)"], data["CLR (C=1e5)"], label="CLR (C=1e3)")
+    plot_loss_rate(data["Rho"], data["CLR (C=1e3)"], data["CLR (C=1e5)"], label_1="CLR (C=1e3)", label_2="CLR (C=1e5)")
 
 
 if __name__ == "__main__":
