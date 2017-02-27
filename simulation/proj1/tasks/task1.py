@@ -54,6 +54,5 @@ def task1_plot():
 
 
 if __name__ == "__main__":
-    # task_1()
+    task_1()
     task1_plot()
-    # plot_loss_rate(x=None, y=None)
