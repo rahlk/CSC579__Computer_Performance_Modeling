@@ -26,12 +26,10 @@ def customer_loss_rate(server):
     return denied / total
 
 
-def plot_loss_rate(x, y):
-    if x is None:
-        x = np.arange(0.05, 1, 0.1)
-    if y is None:
-        y = [rand.exponential(lam=0.5) for _ in xrange(10)]
-    line(x, y)
+def plot_loss_rate(x, y_1, y_2, label_1, label_2):
+    line2(x, y_1, x, y_2, label_1="C=$10^3$", label_2="C=$10^5$",
+          x_label=r"$\rho$", y_label=r"CLR",
+          the_title=r"$\mathrm{CLR\ vs.\ K}$")
     set_trace()
 
 
