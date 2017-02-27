@@ -16,6 +16,8 @@ from pdb import set_trace
 from Simulator import simulate
 
 rand = Random()
+# Set seed
+rand.set_seed(seed_val=12458)
 
 
 def customer_loss_rate(server):
@@ -41,14 +43,14 @@ def task_1_serial():
 
 
 def task_1_parallel():
-    rho_list = np.arange(0.05, 1, 0.1)
     C = [1e3, 1e4]
+    rho_list = np.arange(0.05, 1, 0.1)
     pool_0 = multiprocessing.Pool(processes=10)
     CLR = []
     for lim in C:
         serviced_pool = pool_0.map(
             functools.partial(simulate, server_lim=20, max_serviced=lim, L=1,
-                              verbose=True), rho_list)
+                              verbose=False), rho_list)
         CLR.append([customer_loss_rate(s) for s in serviced_pool])
 
     plot_loss_rate(rho_list, CLR[0], CLR[1])

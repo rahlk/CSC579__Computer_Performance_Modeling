@@ -18,7 +18,8 @@ from pdb import set_trace
 from Simulator import simulate
 
 rand = Random()
-
+# Set seed
+rand.set_seed(seed_val=12458)
 
 def average_wait_time(server):
     return np.mean([customer.get_wait_time() for customer in server.processed])

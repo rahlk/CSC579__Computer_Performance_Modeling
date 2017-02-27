@@ -27,6 +27,9 @@ def simulate(l, server_lim, max_serviced, L, verbose):
     customers = []
     customer_id = 0
     rand = Random()
+    # Set seed
+    rand.set_seed(seed_val=12458)
+
 
     def worker():
         last_served = server.service(verbose)

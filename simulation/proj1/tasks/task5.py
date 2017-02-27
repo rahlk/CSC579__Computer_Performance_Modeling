@@ -21,6 +21,9 @@ from Utils.MisclUtils import TimeUtil
 rand = Random()
 timer = TimeUtil()
 
+# Set seed
+rand.set_seed(seed_val=12458)
+
 def customer_loss_rate(customers):
     served = np.sum([customer.serviced for customer in customers])
     total = len(customers)
