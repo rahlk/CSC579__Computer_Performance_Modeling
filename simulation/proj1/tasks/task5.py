@@ -14,7 +14,7 @@ import numpy as np
 import multiprocessing
 from pdb import set_trace
 from Simulator import simulate
-from Utils.PlotsUtils import line2
+from Utils.PlotsUtils import line
 from Utils.RandomUtil import Random
 from Utils.MisclUtils import TimeUtil
 
@@ -44,6 +44,7 @@ def task_5():
 def csv_to_plot():
     data = pd.read_csv(os.path.abspath("tasks/task5.csv"))
     plot_runtime(data["Rho"], data["Seconds"])
+    set_trace()
 
 
 if __name__ == "__main__":
