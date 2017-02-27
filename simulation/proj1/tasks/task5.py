@@ -3,6 +3,7 @@ from __future__ import print_function
 import os
 import sys
 import functools
+import pandas as pd
 
 # Update path
 root = os.path.join(os.getcwd().split('proj1')[0], 'proj1')
@@ -33,14 +34,17 @@ def task_5():
     elapsed = []
     for rho in rho_list:
         start_time = timer.current_time()
-        print("Rho: {} | Start Time: {} |".format(rho, start_time), end=" ")
+        print("Rho: {}".format(rho, start_time), end=" ")
         serviced = simulate(l = rho, server_lim = 40, max_serviced=100000, L=1, verbose=False)
         end_time = timer.current_time()
         print("| Service Time: {}".format(end_time-start_time))
         elapsed.append(end_time-start_time)
-    plot_runtime(rho_list, elapsed)
+
+def csv_to_plot():
+    data = pd.read_csv("task5.csv")
     set_trace()
+    plot_runtime(rho_list, elapsed)
 
 
 if __name__ == "__main__":
-    task_5()
+    csv_to_plot()
