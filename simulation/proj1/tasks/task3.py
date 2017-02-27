@@ -10,6 +10,7 @@ if root not in sys.path:
     sys.path.append(root)
 
 import numpy as np
+import pandas as pd
 import multiprocessing
 from Utils.RandomUtil import Random
 from Utils.PlotsUtils import line2
