@@ -33,7 +33,7 @@ def task_5():
     elapsed = []
     for rho in rho_list:
         start_time = timer.current_time()
-        print("Rho: {} | Start Time: {} |".format(rho, ), end=" ")
+        print("Rho: {} | Start Time: {} |".format(rho, start_time), end=" ")
         serviced = simulate(l = rho, server_lim = 40, max_serviced=100000, L=1, verbose=False)
         end_time = timer.current_time()
         print("| Service Time: {}".format(end_time-start_time))

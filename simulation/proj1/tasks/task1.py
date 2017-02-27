@@ -40,12 +40,13 @@ def task_1_serial():
 
 def task_1_parallel():
     rho_list = np.arange(0.05, 1, 0.1)
-    C = [1e4]
+    C = [1e3, 1e5]
     pool_0 = multiprocessing.Pool(processes=10)
-    serviced_pool = [pool_0.map(functools.partial(simulate, server_lim = 20, max_serviced=lim, L=1, verbose=False), rho_list) for lim in C]
-    CLR = [[customer_loss_rate(s) for s in serviced] for serviced in serviced_pool]
-    plot_loss_rate(rho_list, CLR[0])
-    set_trace()
+    for lim in C:
+        serviced_pool = pool_0.map(functools.partial(simulate, server_lim = 20, max_serviced=lim, L=1, verbose=False), rho_list)
+        CLR = [customer_loss_rate(s) for s serviced_pool]
+        plot_loss_rate(rho_list, CLR)
+        set_trace()
 
 if __name__ == "__main__":
     task_1_parallel()
