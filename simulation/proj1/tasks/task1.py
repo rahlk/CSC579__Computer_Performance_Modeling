@@ -19,7 +19,7 @@ rand = Random()
 
 def customer_loss_rate(server):
     denied = len(server.rejected)
-    total = len(server.rejected+server.accepted)
+    total = len(server.rejected+server.processed)
     return denied / total
 
 
