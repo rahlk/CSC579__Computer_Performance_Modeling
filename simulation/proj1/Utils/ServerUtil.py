@@ -41,7 +41,7 @@ class Server:
         self.kill = False
         self.timer = TimeUtil()
         # Set seed
-        rand.set_seed(seed_val=12458)
+        self.rand.set_seed(seed_val=12458)
 
     def get_service_time(self):
         return self.rand.exponential(lam=1)
