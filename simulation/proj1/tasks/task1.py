@@ -44,12 +44,12 @@ def task_1():
                               verbose=False), rho_list)
         CLR.append([customer_loss_rate(s) for s in serviced_pool])
 
-    data = pd.DataFrame([[a,b,c] for a, b, c in zip(rho_list, CLR[0], CLR[1])], columns=["Rho", "CLR (C=1000)", "CLR (C=100000)"])
+    data = pd.DataFrame([[a,b,c] for a, b, c in zip(rho_list, CLR[0], CLR[1])], columns=["Rho", "CLR (C=1e3)", "CLR (C=1e5)"])
     data.to_csv(os.path.abspath(os.path.join(root,"tasks/task1.csv")))
 
 def task1_plot():
     data = pd.read_csv(os.path.abspath(os.path.join(root,"tasks/task3.csv")))
-    plot_loss_rate(data["Rho"], data["CLR (C=1000)"], data["CLR (Theoritic)"], label="CLR (C=1000)")
+    plot_loss_rate(data["Rho"], data["CLR (C=1e3)"], data["CLR (C=1e5)"], label="CLR (C=1e3)")
 
 
 if __name__ == "__main__":

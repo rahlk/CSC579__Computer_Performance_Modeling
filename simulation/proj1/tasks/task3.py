@@ -57,14 +57,14 @@ def task_3():
                               verbose=False), rho_list)
         CLR.append([customer_loss_rate(s) for s in serviced_pool])
 
-    data = pd.DataFrame([[a,b,c,d] for a, b, c, d in zip(rho_list, CLR[0], CLR[1], CLR_theoritical)], columns=["Rho", "CLR (C=1000)", "CLR (C=100000)", "CLR (Theoritic)"])
+    data = pd.DataFrame([[a,b,c,d] for a, b, c, d in zip(rho_list, CLR[0], CLR[1], CLR_theoritical)], columns=["Rho", "CLR (C=1e3)", "CLR (C=1e5)", "CLR (Theoritic)"])
     data.to_csv(os.path.abspath(os.path.join(root,"tasks/task3.csv")))
 
 
 def task3_plot():
     data = pd.read_csv(os.path.abspath(os.path.join(root,"tasks/task3.csv")))
-    plot_loss_rate(data["Rho"], data["CLR (C=1000)"], data["CLR (Theoritic)"], label="CLR (C=1000)")
-    plot_loss_rate(data["Rho"], data["CLR (C=100000)"], data["CLR (Theoritic)"], label="CLR (C=100000)")
+    plot_loss_rate(data["Rho"], data["CLR (C=1e3)"], data["CLR (Theoritic)"], label="CLR (C=1e3)")
+    plot_loss_rate(data["Rho"], data["CLR (C=1e5)"], data["CLR (Theoritic)"], label="CLR (C=1e5)")
 
     set_trace()
 
