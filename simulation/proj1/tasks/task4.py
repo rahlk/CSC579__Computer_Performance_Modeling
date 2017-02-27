@@ -39,4 +39,4 @@ def task_4():
 
 
 if __name__ == "__main__":
-    plot_loss_rate()
+    task_4()
