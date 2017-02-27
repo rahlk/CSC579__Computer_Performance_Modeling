@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 import multiprocessing
 from Utils.RandomUtil import Random
-from Utils.PlotsUtils import histogram, line
+from Utils.PlotsUtils import line2
 from pdb import set_trace
 from Simulator import simulate
 
@@ -40,7 +40,7 @@ def simulate_partial_func(K, C):
 
 def task_2():
     queue_size = np.arange(5, 101, 10)
-    C = (1e2, 1e3)
+    C = (1e3, 1e5)
     pool_0 = multiprocessing.Pool(processes=10)
     CLR = []
     for max_serve in C:
