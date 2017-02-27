@@ -18,7 +18,7 @@ def line(x, y, axis="auto", x_label="X", y_label="Y", the_title="Title", x_min=0
     plot.style.use('fivethirtyeight')
     plot.rcParams["font.family"] = "monospace"
 
-    plot.plot(x, y, linewidth=2)
+    plot.plot(x, y, RED_538, linewidth=2)
 
     plot.xlabel(x_label)
     plot.ylabel(y_label)
