@@ -10,6 +10,7 @@ if root not in sys.path:
     sys.path.append(root)
 
 import numpy as np
+import pandas as pd
 import multiprocessing
 from Utils.RandomUtil import Random
 from Utils.PlotsUtils import line
@@ -30,11 +31,13 @@ def plot_mean_wait_time(x, wait_time):
 
 def task_4():
     rho_list = np.arange(0.05, 1, 0.1)
-    C = 1e5
+    C = 1e1
     wait_time = []
     for rho in rho_list:
         serviced_pool = simulate(l = rho, server_lim = 100, max_serviced=C, L=1, verbose=False)
         wait_time.append(average_wait_time(serviced_pool))
+    data = pd.DataFrame([rho_list, wait_time], columns=['Rho', 'Wait Time'])
+    data.to_csv(os.path.abspath(os.path.join(root,"tasks/task4.csv")))
     plot_mean_wait_time(rho_list, wait_time)
 
 
