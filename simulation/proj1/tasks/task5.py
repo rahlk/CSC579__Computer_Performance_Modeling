@@ -32,18 +32,18 @@ def plot_runtime(x=None, y=None):
 def task_5():
     rho_list = np.arange(0.05, 1, 0.1)
     elapsed = []
+    print("Rho, Seconds")
     for rho in rho_list:
         start_time = timer.current_time()
-        print("Rho: {}".format(rho, start_time), end=" ")
+        print("{}".format(rho), end=", ")
         serviced = simulate(l = rho, server_lim = 40, max_serviced=100000, L=1, verbose=False)
         end_time = timer.current_time()
-        print("| Service Time: {}".format(end_time-start_time))
+        print("{}".format(round(end_time-start_time,2)))
         elapsed.append(end_time-start_time)
 
 def csv_to_plot():
     data = pd.read_csv(os.path.abspath("tasks/task5.csv"))
-    set_trace()
-    plot_runtime(rho_list, elapsed)
+    plot_runtime(data["Rho"], data["Seconds"])
 
 
 if __name__ == "__main__":
