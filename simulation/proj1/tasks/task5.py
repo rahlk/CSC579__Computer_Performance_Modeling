@@ -38,6 +38,7 @@ def task_5():
         end_time = timer.current_time()
         print("| Service Time: {}".format(end_time-start_time))
         elapsed.append(end_time-start_time)
+    plot_runtime(rho_list, elapsed)
     set_trace()
 
 

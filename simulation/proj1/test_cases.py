@@ -1,7 +1,7 @@
 from __future__ import print_function
 
-from Utils.RandomUtil import Random
-from Utils.PlotsUtils import histogram
+from Utils.RandomUtil import *
+from Utils.PlotsUtils import *
 
 
 def __test_rand0():
@@ -43,5 +43,14 @@ def __test_histogram():
     histogram(x, N=1000)
 
 
+def __test_line2():
+    # seeds = range(0, 30)
+    rand = Random()
+    x = range(1000)
+    y_1 = sorted([rand.rand0() for n in xrange(1000)])
+    y_2 = sorted([rand.exponential() for n in xrange(1000)])
+    line2(x, y_1, x, y_2,label_1="C=$10^3$", label_2="C=$10^5$")
+
+
 if __name__ == "__main__":
-    __test_histogram()
+    __test_line2()

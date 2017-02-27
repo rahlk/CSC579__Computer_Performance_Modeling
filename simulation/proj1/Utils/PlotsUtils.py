@@ -27,7 +27,7 @@ def line(x, y, axis="auto", x_label="X", y_label="Y", the_title="Title", x_min=0
         plot.axis([x_min, x_max, y_min, y_max])
     plot.show()
 
-def line2(x, y, x_1, y_1, x_label="X", y_label="Y", the_title="Title"):
+def line2(x, y, x_1, y_1, label_1="label_1", label_2="label_2", x_label="X", y_label="Y", the_title="Title"):
     """
     Plot a histogram of the data
     """
@@ -35,7 +35,10 @@ def line2(x, y, x_1, y_1, x_label="X", y_label="Y", the_title="Title"):
     plot.style.use('fivethirtyeight')
     plot.rcParams["font.family"] = "monospace"
 
-    plot.plot(x, y, RED_538, x_1, y_1, GRY_538, linewidth=2)
+    line_1, = plot.plot(x, y, RED_538, linewidth=2, label=label_1)
+    line_2, = plot.plot(x_1, y_1, GRY_538, linewidth=2, label=label_2)
+
+    plot.legend(loc=7)
 
     plot.xlabel(x_label)
     plot.ylabel(y_label)

@@ -6,7 +6,7 @@ class TimeUtil:
 
     @staticmethod
     def sec_to_ms(sec):
-        return sec*1e-2
+        return sec*1e-3
 
     @staticmethod
     def sec_to_us(sec):

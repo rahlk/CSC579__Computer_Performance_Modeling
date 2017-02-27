@@ -11,7 +11,7 @@ if root not in sys.path:
 import numpy as np
 import multiprocessing
 from Utils.RandomUtil import Random
-from Utils.PlotsUtils import histogram, line
+from Utils.PlotsUtils import line2
 from pdb import set_trace
 from Simulator import simulate
 
@@ -23,12 +23,9 @@ def customer_loss_rate(server):
     return denied / total
 
 
-def plot_loss_rate(x, y):
-    if x is None:
-        x = np.arange(0.05, 1, 0.1)
-    if y is None:
-        y = [rand.exponential(lam=0.5) for _ in xrange(10)]
-    line(x, y, x_label=r"$\rho$", y_label=r"CLR", the_title=r"$\mathrm{CLR\ vs.\ }\rho$")
+def plot_loss_rate(x, y_1, y_2):
+
+    line2(x, y_1, x, y_2, label_1="C=$10^3$", label_2="C=$10^5$", x_label=r"$\rho$", y_label=r"CLR", the_title=r"$\mathrm{CLR\ vs.\ }\rho$")
     set_trace()
 
 
@@ -42,10 +39,12 @@ def task_1_parallel():
     rho_list = np.arange(0.05, 1, 0.1)
     C = [1e3, 1e5]
     pool_0 = multiprocessing.Pool(processes=10)
+    CLR = []
     for lim in C:
         serviced_pool = pool_0.map(functools.partial(simulate, server_lim = 20, max_serviced=lim, L=1, verbose=True), rho_list)
-        CLR = [customer_loss_rate(s) for s in serviced_pool]
-        plot_loss_rate(rho_list, CLR)
+        CLR.append([customer_loss_rate(s) for s in serviced_pool])
+
+    plot_loss_rate(rho_list, CLR[0], CLR[1])
         # set_trace()
 
 if __name__ == "__main__":
