@@ -12,7 +12,7 @@ if root not in sys.path:
 import numpy as np
 import multiprocessing
 from Utils.RandomUtil import Random
-from Utils.PlotsUtils import line2
+from Utils.PlotsUtils import line
 from pdb import set_trace
 from Simulator import simulate
 
