@@ -24,7 +24,7 @@ def average_wait_time(server):
 
 
 def plot_mean_wait_time(x, wait_time):
-    line(x, wait_time, x_label=r"$\rho$", y_label=r"Wait Times", the_title=r"$\mathrm{Wait\ Times\ in\ milliseconds\ vs.\ }\rho$")
+    line(x, wait_time, x_label=r"$\rho$", y_label=r"Wait Times", the_title=r"$\mathrm{Wait\ Times\ in\ ms\ vs.\ }\rho$")
     set_trace()
 
 
