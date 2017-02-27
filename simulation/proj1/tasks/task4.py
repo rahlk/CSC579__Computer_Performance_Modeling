@@ -33,7 +33,7 @@ def task_4():
     # C = 1e5
     wait_time = []
     for rho in rho_list:
-        serviced_pool = simulate(l = rho, server_lim = 100, max_serviced=1e2, L=1, verbose=False)
+        serviced_pool = simulate(l = rho, server_lim = 100, max_serviced=1e3, L=1, verbose=False)
         wait_time.append(average_wait_time(serviced_pool))
     plot_mean_wait_time(rho_list, wait_time)
 
