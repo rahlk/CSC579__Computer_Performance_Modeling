@@ -39,7 +39,7 @@ def theoritical_loss_rate(rho, K):
     return (1-rho) * rho ** K / (1 - rho ** (K+1))
 
 
-def plot_loss_rate(x=None, CLR=None, CLR_theoritical=None, label):
+def plot_loss_rate(x, CLR, CLR_theoritical, label):
     line2(x, CLR, x, CLR_theoritical, label_1=label, label_2="CLR (Theoritical)", x_label=r"$\rho$", y_label=r"CLR", the_title=r"CLR (Sim) vs. CLR (Theoritical)")
 
 
