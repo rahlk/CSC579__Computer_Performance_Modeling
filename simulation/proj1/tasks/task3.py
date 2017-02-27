@@ -71,4 +71,5 @@ def task3_plot():
 
 if __name__ == "__main__":
     task_3()
+    task3_plot()
     # plot_loss_rate()
