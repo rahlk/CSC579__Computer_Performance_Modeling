@@ -3,7 +3,6 @@ from __future__ import print_function
 import os
 import sys
 import functools
-from Utils.MisclUtils import TimeUtil
 
 # Update path
 root = os.path.join(os.getcwd().split('proj1')[0], 'proj1')
@@ -12,10 +11,11 @@ if root not in sys.path:
 
 import numpy as np
 import multiprocessing
-from Utils.RandomUtil import Random
-from Utils.PlotsUtils import line2
 from pdb import set_trace
 from Simulator import simulate
+from Utils.PlotsUtils import line2
+from Utils.RandomUtil import Random
+from Utils.MisclUtils import TimeUtil
 
 rand = Random()
 timer = TimeUtil()
