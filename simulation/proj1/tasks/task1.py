@@ -28,7 +28,7 @@ def plot_loss_rate(x, y):
         x = np.arange(0.05, 1, 0.1)
     if y is None:
         y = [rand.exponential(lam=0.5) for _ in xrange(10)]
-    line(x, y, x_label=r"$\rho", y_label=r"CLR", the_title=r"$\mathrm{CLR\ vs.\ }\rho$")
+    line(x, y, x_label=r"$\rho$", y_label=r"CLR", the_title=r"$\mathrm{CLR\ vs.\ }\rho$")
     set_trace()
 
 
