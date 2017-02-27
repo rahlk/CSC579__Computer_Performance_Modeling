@@ -53,7 +53,7 @@ def task_3():
     CLR = []
     for lim in C:
         serviced_pool = pool_0.map(
-            functools.partial(simulate, server_lim=20, max_serviced=lim, L=1,
+            functools.partial(simulate, server_lim=5, max_serviced=lim, L=1,
                               verbose=False), rho_list)
         CLR.append([customer_loss_rate(s) for s in serviced_pool])
 
