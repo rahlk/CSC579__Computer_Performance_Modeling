@@ -25,6 +25,7 @@ def average_wait_time(server):
 
 def plot_mean_wait_time(x, wait_time):
     line(x, wait_time, x_label=r"$\rho$", y_label=r"Wait Times", the_title=r"$\mathrm{Wait\ Times\ in\ milliseconds\ vs.\ }\rho$")
+    set_trace()
 
 
 def task_4():
@@ -34,6 +35,7 @@ def task_4():
     for rho in rho_list:
         serviced_pool = simulate(l = rho, server_lim = 100, max_serviced=lim, L=1, verbose=False)
         wait_time.append(average_wait_time(serviced_pool)])
+    plot_mean_wait_time(rho_list, wait_time)
 
 
 if __name__ == "__main__":
