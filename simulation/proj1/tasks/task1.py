@@ -48,10 +48,11 @@ def task_1():
     data.to_csv(os.path.abspath(os.path.join(root,"tasks/task1.csv")))
 
 def task1_plot():
-    data = pd.read_csv(os.path.abspath(os.path.join(root,"tasks/task3.csv")))
+    data = pd.read_csv(os.path.abspath(os.path.join(root,"tasks/task1.csv")))
     plot_loss_rate(data["Rho"], data["CLR (C=1e3)"], data["CLR (C=1e5)"], label="CLR (C=1e3)")
 
 
 if __name__ == "__main__":
-    task_1_parallel()
+    # task_1()
+    task1_plot()
     # plot_loss_rate(x=None, y=None)
