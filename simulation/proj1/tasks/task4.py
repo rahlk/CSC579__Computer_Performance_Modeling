@@ -19,38 +19,22 @@ from Simulator import simulate
 rand = Random()
 
 
-def customer_loss_rate(customers):
-    served = np.sum([customer.serviced for customer in customers])
-    total = len(customers)
-    return served / total
+def average_wait_time(server):
+    return np.mean([customer.get_wait_time() for customer in server.processed])
 
 
-def plot_loss_rate(x=None, CLR=None, CLR_theoritical=None):
-    if x is None:
-        x = np.arange(0.05, 1, 0.1)
-    if y is None:
-        y = [rand.exponential(lam=0.5) for _ in xrange(10)]
-    line(x, y)
-    set_trace()
+def plot_mean_wait_time(x, wait_time):
+    line(x, wait_time, x_label=r"$\rho$", y_label=r"Wait Times", the_title=r"$\mathrm{Wait\ Times\ in\ milliseconds\ vs.\ }\rho$")
 
 
-def task_4_serial():
+def task_4():
     rho_list = np.arange(0.05, 1, 0.1)
-    C = (1e3, 1e5)
-    serviced_pool = [map(functools.partial(simulate, server_lim = 20, max_serviced=lim, L=1, verbose=False), rho_list) for lim in C]
-    set_trace()
+    C = 1e2
+    wait_time = []
+    for rho in rho_list:
+        serviced_pool = simulate(l = rho, server_lim = 100, max_serviced=lim, L=1, verbose=False)
+        wait_time.append(average_wait_time(serviced_pool)])
 
-def task_4_parallel():
-    rho_list = np.arange(0.05, 1, 0.1)
-    pool_0 = multiprocessing.Pool(processes=10)
-
-    serviced = pool_0.map(functools.partial(simulate, server_lim = 100, max_serviced=lim, L=1, verbose=False), rho_list)
-
-    CLR = [[customer_loss_rate(s) for s in serviced] for serviced in serviced_pool]
-    CLR_theoritical = [theoritical_loss_rate(r, K=20) for r in rho_list]
-
-    set_trace()
 
 if __name__ == "__main__":
-    # task_4_parallel()
     plot_loss_rate()
