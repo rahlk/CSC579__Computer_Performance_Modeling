@@ -73,7 +73,7 @@ class Server:
                 service_time = self.get_service_time()
                 self.timer.wait_millisc(service_time)
                 next_customer.serviced = True
-                next_customer.service_time = service_time
+                next_customer.service_time = service_time * 0.001
                 next_customer.depart_time = self.timer.current_time()
                 last_served = self.dequeue(next_customer)
                 self.processed.append(last_served)

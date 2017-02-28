@@ -18,18 +18,21 @@ def mean_wait_time(server):
 
 
 def cust_arrival(server, start_time, L):
-    return "{}, {}, {}, {}".format(round(server[L].arrival_time-start_time, 2),
-                                    round(server[L+1].arrival_time-start_time, 2),
-                                    round(server[L+10].arrival_time-start_time, 2),
-                                    round(server[L+11].arrival_time-start_time, 2))
+    return "{}, {}, {}, {}".format(round(server[L].arrival_time-start_time, 5),
+                                    round(server[L+1].arrival_time-start_time, 5),
+                                    round(server[L+10].arrival_time-start_time, 5),
+                                    round(server[L+11].arrival_time-start_time, 5))
 
 
 def cust_departr(server, start_time, L):
-    return "{}, {}, {}, {}".format(round(server[L].depart_time-start_time, 2),
-                                    round(server[L+1].depart_time-start_time, 2),
-                                    round(server[L+10].depart_time-start_time, 2),
-                                    round(server[L+11].depart_time-start_time, 2))
+    return "{}, {}, {}, {}".format(round(server[L].depart_time-start_time, 5),
+                                    round(server[L+1].depart_time-start_time, 5),
+                                    round(server[L+10].depart_time-start_time, 5),
+                                    round(server[L+11].depart_time-start_time, 5))
 
 
 def cust_service(server, L):
-    pass
+    return "{}, {}, {}, {}".format(round(server[L].service_time, 5),
+                                    round(server[L+1].service_time, 5),
+                                    round(server[L+10].service_time, 5),
+                                    round(server[L+11].service_time, 5))
