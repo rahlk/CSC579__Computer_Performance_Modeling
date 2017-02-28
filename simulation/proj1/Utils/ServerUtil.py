@@ -20,7 +20,7 @@ class Customer:
         self.serviced = None
         self.denied = None
         self.depart_time = self.arrival_time
-        self.service_time = self.arrival_time
+        self.service_time = 0
 
     def get_wait_time(self):
         self.wait_time = self.depart_time - self.arrival_time + self.service_time
@@ -55,6 +55,7 @@ class Server:
         else:
             customer.queued = False
             customer.denied = True
+            customer.service_time = 0
             customer.depart_time = current_time
             self.rejected.append(customer)
 
