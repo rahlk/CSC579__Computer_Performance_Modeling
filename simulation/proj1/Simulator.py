@@ -8,6 +8,7 @@ from Utils.CalcUtils import mean_wait_time
 from Utils.ServerUtil import Customer, Server
 from Utils.CalcUtils import mean_service_time
 from Utils.CalcUtils import customer_loss_rate
+from Utils.CalcUtils import cust_arrival, cust_service, cust_departr
 
 logging.basicConfig(level=logging.DEBUG,
                     format='(Queuing Customer %(threadName)s) | %(message)s', )
@@ -73,7 +74,10 @@ def simulate(l, server_lim, max_serviced, L, verbose):
         print("Average Service Time : {}".format(round(mean_service_time(server),2)))
         print("Master clock at the end of simulation: {} units\n".format(int(end_time-start_time)))
 
-        print("Customer {} Details:\n".format(L))
+        print("Customers {}, {}, {}, {}:\n".format(L, L+1, L+10, L+11))
+        print("Arrival  : {}".format(cust_arrival(server, L)))
+        # print("Service  : {}".format(cust_service(server, L)))
+        # print("Departure: {}".format(cust_departr(server, L)))
     return server
 
 
