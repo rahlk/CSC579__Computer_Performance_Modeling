@@ -27,7 +27,7 @@ def simulate(l, server_lim, max_serviced, L, verbose):
     customers = []
     customer_id = 0
     rand = Random()
-    # Set seed
+    start_time = timer.current_time()
     rand.set_seed(seed_val=12458)
 
 
@@ -55,6 +55,18 @@ def simulate(l, server_lim, max_serviced, L, verbose):
         t.start()
 
     server.kill = True
+    end_time = timer.current_time()
+
+
+    if verbose:
+        print("Lamdba: {}".format(l))
+        print("K     : {}".format(server_lim))
+        print("C     : {}".format(max_serviced))
+        print("Master clock at the end of simulation: {}".format(int(end_time-start_time)))
+        # print("Customer Loss Rate: {}")
+        # print("Average Service Time: {}")
+        # print("Average Wait Time: {}")
+        # print("Lamdba: {}")
     return server
 
 
