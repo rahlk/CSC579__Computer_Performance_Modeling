@@ -72,7 +72,7 @@ def simulate(l, server_lim, max_serviced, L, verbose):
         print("Simulation Details:\nAverage Wait Time    : {}".format(round(mean_wait_time(server),2)))
         print("Customer Loss Rate   : {}".format(round(customer_loss_rate(server), 3)))
         print("Average Service Time : {}".format(round(mean_service_time(server),2)))
-        print("Master clock at the end of simulation: {} units\n".format(int(end_time-start_time)))
+        print("Master clock at the end of simulation: {} units\n".format(round(end_time-start_time, 2)))
 
         print("Customers {}, {}, {}, {}:\n".format(L, L+1, L+10, L+11))
         print("Arrival  : {}".format(cust_arrival(customers, start_time, L)))
