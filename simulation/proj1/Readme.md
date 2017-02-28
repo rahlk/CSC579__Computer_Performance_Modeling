@@ -6,13 +6,13 @@
       make setup   (or)
       pip install -r requirements
 
-2. Run Simulator.py
+2. Run proj1.py
       make run     (or)
-      python -B Simulator.py
+      python -B proj1.py
 
 3. For help on input arguments
       make help    (or)
-      python -B Simulator.py -h
+      python -B proj1.py -h
 
 4. For each task run `make task<task-number>`. For Ex:
       make task1
@@ -27,7 +27,7 @@
 Proj1
 ├── Makefile
 ├── requirements.txt
-├── Simulator.py
+├── proj1.py
 ├── tasks
 │   ├── task1.py
 │   ├── task2.py

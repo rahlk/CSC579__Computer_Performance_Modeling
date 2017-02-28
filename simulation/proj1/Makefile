@@ -1,11 +1,11 @@
 help:
-	python -B Simulator.py -h
+	python -B proj1.py -h
 
 setup:
 	pip install -r requirements.txt
 
 run:
-	python -B Simulator.py --L 220 -v 1
+	python -B proj1.py --L 220 -v 1
 
 task1:
 	python -B tasks/task1.py
