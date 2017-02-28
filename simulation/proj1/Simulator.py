@@ -30,7 +30,6 @@ def simulate(l, server_lim, max_serviced, L, verbose):
     start_time = timer.current_time()
     rand.set_seed(seed_val=12458)
 
-
     def worker():
         last_served = server.service(verbose)
 
@@ -40,7 +39,7 @@ def simulate(l, server_lim, max_serviced, L, verbose):
         """
         customer = server.enqueue(customer)
         customers.append(customer)
-        if verbose: logging.debug('Accepted: {} | Customers: {}'.format(customer.queued, len(customers)))
+        if verbose>1: logging.debug('Accepted: {} | Customers: {}'.format(customer.queued, len(customers)))
 
 
 
@@ -76,15 +75,15 @@ if __name__ == '__main__':
     parser.add_argument('--l', default=0.85, type=float,
                         help='Lamdba for the distribution of interarrival '
                              'times.\n DEFAULT --l 0.85.')
-    parser.add_argument('--K', default=5,
+    parser.add_argument('--K', default=5, type=int,
                         help='The number of customers the server queue may '
                              'hold.\n DEFAULT --K 5.')
-    parser.add_argument('--C', default=1000,
+    parser.add_argument('--C', default=1000, type=int,
                         help='Number of customed server before the program '
                              'terminates.\n DEFAULT --C 1000')
-    parser.add_argument('--L', default=1,
+    parser.add_argument('--L', default=1, type=int,
                         help='Any integer such that 1<L<C.\n DEFAULT --L 1')
-    parser.add_argument('-v', '--debug', action='store_true', default=0,
+    parser.add_argument('-v', '--debug', default=0, type=int,
                         help='Verbose mode. Print debug log.')
 
     args = parser.parse_args()

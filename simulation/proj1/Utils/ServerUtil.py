@@ -76,6 +76,6 @@ class Server:
                 next_customer.depart_time = self.timer.current_time()
                 last_served = self.dequeue(next_customer)
                 self.processed.append(last_served)
-                if verbose:
+                if verbose>1:
                     print("(Serving Customer {}) | Remaining: {}".format(
                         last_served.id, self.queue_size - len(self.queue)))
