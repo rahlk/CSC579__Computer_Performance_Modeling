@@ -68,9 +68,9 @@ def simulate(l, server_lim, max_serviced, L, verbose):
         print("C     : {}".format(max_serviced))
         print("Lamdba: {}\n".format(l))
 
-        print("Simulation Details:\nAverage Wait Time   : {}".format(round(mean_wait_time(server),2)))
-        print("Customer Loss Rate  : {}".format(round(customer_loss_rate(server), 3)))
-        print("Average Service Time: {}".format(round(mean_service_time(server),2)))
+        print("Simulation Details:\nAverage Wait Time    : {}".format(round(mean_wait_time(server),2)))
+        print("Customer Loss Rate   : {}".format(round(customer_loss_rate(server), 3)))
+        print("Average Service Time : {}".format(round(mean_service_time(server),2)))
         print("Master clock at the end of simulation: {} units".format(int(end_time-start_time)))
 
         # print("Lamdba: {}")
