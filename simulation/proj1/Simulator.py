@@ -77,7 +77,7 @@ def simulate(l, server_lim, max_serviced, L, verbose):
         print("Customers {}, {}, {}, {}:\n".format(L, L+1, L+10, L+11))
         print("Arrival  : {}".format(cust_arrival(customers, start_time, L)))
         # print("Service  : {}".format(cust_service(customers, L)))
-        print("Departure: {}".format(cust_departr(customers, L)))
+        print("Departure: {}".format(cust_departr(customers, start_time, L)))
     return server
 
 

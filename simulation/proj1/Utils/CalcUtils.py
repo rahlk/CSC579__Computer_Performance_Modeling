@@ -24,7 +24,7 @@ def cust_arrival(server, start_time, L):
                                     round(server[L+11].arrival_time-start_time, 2))
 
 
-def cust_departr(server, L):
+def cust_departr(server, start_time, L):
     return "{}, {}, {}, {}".format(round(server[L].depart_time-start_time, 2),
                                     round(server[L+1].depart_time-start_time, 2),
                                     round(server[L+10].depart_time-start_time, 2),
