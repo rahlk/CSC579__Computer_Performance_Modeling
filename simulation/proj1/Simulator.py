@@ -23,6 +23,9 @@ def simulate(l, server_lim, max_serviced, L, verbose):
     :return: customers: List of populated Customer objects.
     """
 
+
+    print("Running Simulation...")
+
     server = Server(K=server_lim)
     customers = []
     customer_id = 0
