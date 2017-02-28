@@ -17,11 +17,11 @@ def mean_wait_time(server):
     return np.mean([customer.get_wait_time() for customer in server.processed])
 
 
-def cust_arrival(server, L):
-    return "{}, {}, {}, {}".format(server[L].arrival_time,
-                                    server[L+1].arrival_time,
-                                    server[L+10].arrival_time,
-                                    server[L+11].arrival_time)
+def cust_arrival(server, start_time, L):
+    return "{}, {}, {}, {}".format(round(server[L].arrival_time-start_time, 2),
+                                    round(server[L+1].arrival_time-start_time, 2),
+                                    round(server[L+10].arrival_time-start_time, 2),
+                                    round(server[L+11].arrival_time-start_time, 2))
 
 
 def cust_departr(server, L):
