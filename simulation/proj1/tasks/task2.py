@@ -58,5 +58,5 @@ def task2_plot():
 
 
 if __name__ == "__main__":
-    # task_2()
+    task_2()
     task2_plot()
