@@ -68,10 +68,52 @@ The plot of theoretical customer loss rate (CLT) versus simulated CLR are shown 
 \item The overall behavior shows that as $\rho$ increases the customer loss rate also increases. This can be explained by reflecting on the nature of the exponential distribution that is used to generate the service/interarrival times. As $\rho$, therefore $\lambda$ (because $\rho=\lambda$) approaches 1, the interarrival times are too close to the service time (which was set to $\mu=1$). Therefore, the likelihood of dropping service increases.
 \end{enumerate}
 
+\input{task4.tex}
 
 \section{Task 4}
 \label{task4}
-\input{task4.tex}
-The plot of
+
+The plot of customer wait times versus $\rho$ is shown in Fig.~\ref{fig7}. There is a negligible increase in wait times as $\rho$ increases. We can consider that this is almost a constant. This is to be expected. The queue size is constant at K=100. The wait times would depend only on the queue size. Longer queues would lead to longer average wait times. The arrival rate $\rho$ however is independent of the queue size. Thus, as $\rho$ increases we would expect the wait times to remain constant.
+\section{Task 5}
+\label{task5}
+
+The plot of running times of the simulations against $\rho$ is shown in Fig.~\ref{fig8}. We note the following:
+
+\begin{enumerate}
+\item At lower values of $\rho$ the simulation take much longer to run that at higher values. 
+\item The runtimes decrease exponentially with $\rho$.
+\end{enumerate}
+
+\input{task5.tex}
+
+This was to be expected due to the nature of the random number generator. We see the expected values over $10^6$ reruns of the RNG output in Fig.~\ref{fig9}. Note that at $rho=0.05$ the average interarrival times are around 20$\mu s$ and the arrival times decreases exponentially. This must show up in our simulation, and it does.
+\newpage
+\section*{Task 6: Paxson96 Paper}
+\subsubsection*{Anticipatory flow state}
+
+When a network sees traffic from state A to B, it expects (or ``anticipates'') a flow from state B to A. This is called anticipatory flow state. Failure to achieve this state causes routing asymmetry. This can lead to issues such as complicating network measurements, trouble shooting, accounting, and the utility of routers. Also, it increases the likelihood that the network problem apparent in one direction cannot be detected on the other direction.
+\subsubsection*{2. Fluttering}
+The term fluttering is used to refer to rapidly oscillating routing. Problems with fluttering:
+\begin{itemize}
+ \item \textit{Unstable Network Paths} 
+ \item \textit{Asymmetry}
+ \item \textit{Unreliable Estimations}
+ \textit{\textit{Spurious ``Fast Retransmission''}} (usually occurs when two routes have different retransmission times.)
+\end{itemize}
+\subsubsection*{3. Nature of Routing Pathologies}
+Table 2 in the paper presents a summary of the routing pathologies. Out of the 5 pathologies presented there, 3 of them: Mid-stream change, Infrastructure failure, and Outage $\ge$ 30 secs, showed worsening trends. Also, none of them improved.
+
+If the author's inferences we considered, it shows that in 1995, the likelihood of a user encountering a serious end-to-end routing problem was 1 to 30 especially for outages that last longer than 30s.
+
+It is difficult to assess the efficacy of the inference. The author states that 1995 (the year under consideration) was an atypical year for internet due to the transition to commercially operated backbones.
+
+\subsubsection*{4. Paper structure}
+
+The paper is organized a sort of survey of 40000 end-to-end internet route measurements to characterize pathological routing conditions, routing stability, and routing symmetry. 
+
+One would expect to see in a paper that deals with measurements some sort of analysis of the difficulties that were pointed out. Especially if the issues were endemic to large packet-switched internetwork, or if there are fixes available.
+
+The authors acknowledge this issue and therefore provide several justifications to why these shortcomings are present in the paper.
+
 \end{document}
 
