@@ -24,9 +24,9 @@ def cust_arrival(server, L):
                                     server[L+11].arrival_time)
 
 
-def cust_arrival(server, L):
+def cust_departr(server, L):
     pass
 
 
-def cust_arrival(server, L):
+def cust_service(server, L):
     pass
