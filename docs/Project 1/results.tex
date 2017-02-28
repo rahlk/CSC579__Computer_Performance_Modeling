@@ -8,6 +8,7 @@
 \usepackage{hyperref}
 \usepackage{fullpage}
 \usepackage{times}
+\usepackage{caption}
 \usepackage{wrapfig}
 \usepackage{capt-of}
 \newcommand{\tion}[1]{Task~\ref{#1}}
@@ -59,5 +60,18 @@ The plots are shown in Fig. \ref{fig3}. The findings follow from that of \tion{t
 \section{Task 3}
 \label{task3}
 \input{task3.tex}
+
+The plot of theoretical customer loss rate (CLT) versus simulated CLR are shown in Figs.~~\ref{fig4},~~\ref{fig5},and~\ref{fig6}. We note that: 
+\begin{enumerate}
+\item The queue size of $K=20$ is too large and the simulated CLR is zero $\forall$ $\rho\in\{0.05,\ldots,0.95\}$. Therefore, Figs. \ref{fig5} and \ref{fig6} are shown to depict the CLR that is obtained via simulation has the same trend as that of CLR obtained theoretically.
+
+\item The overall behavior shows that as $\rho$ increases the customer loss rate also increases. This can be explained by reflecting on the nature of the exponential distribution that is used to generate the service/interarrival times. As $\rho$, therefore $\lambda$ (because $\rho=\lambda$) approaches 1, the interarrival times are too close to the service time (which was set to $\mu=1$). Therefore, the likelihood of dropping service increases.
+\end{enumerate}
+
+
+\section{Task 4}
+\label{task4}
+\input{task4.tex}
+The plot of
 \end{document}
 
