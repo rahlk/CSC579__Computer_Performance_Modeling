@@ -4,7 +4,10 @@ from pdb import set_trace
 from threading import Thread
 from Utils.MisclUtils import TimeUtil
 from Utils.RandomUtil import Random
+from Utils.CalcUtils import mean_wait_time
 from Utils.ServerUtil import Customer, Server
+from Utils.CalcUtils import mean_service_time
+from Utils.CalcUtils import customer_loss_rate
 
 logging.basicConfig(level=logging.DEBUG,
                     format='(Queuing Customer %(threadName)s) | %(message)s', )
@@ -24,7 +27,7 @@ def simulate(l, server_lim, max_serviced, L, verbose):
     """
 
 
-    print("Running Simulation...")
+    print("Running Simulation...\n")
 
     server = Server(K=server_lim)
     customers = []
@@ -61,13 +64,15 @@ def simulate(l, server_lim, max_serviced, L, verbose):
 
 
     if verbose:
-        print("Lamdba: {}".format(l))
-        print("K     : {}".format(server_lim))
+        print("Parameters:\nK     : {}".format(server_lim))
         print("C     : {}".format(max_serviced))
-        print("Master clock at the end of simulation: {}".format(int(end_time-start_time)))
-        # print("Customer Loss Rate: {}")
-        # print("Average Service Time: {}")
-        # print("Average Wait Time: {}")
+        print("Lamdba: {}\n".format(l))
+
+        print("Customer Loss Rate: {}".format(round(customer_loss_rate(server), 3)))
+        print("Simulation Details:\nMaster clock at the end of simulation: {} units".format(int(end_time-start_time)))
+        print("Average Service Time: {}".format(round(mean_service_time(server),2)))
+        print("Average Wait Time: {}")
+
         # print("Lamdba: {}")
     return server
 
