@@ -63,8 +63,9 @@ def task_3():
 
 def task3_plot():
     data = pd.read_csv(os.path.abspath(os.path.join(root,"tasks/task3.csv")))
-    plot_loss_rate(data["Rho"], data["CLR (C=1e3)"], data["CLR (Theoritic)"], label="CLR (C=1e3)")
-    plot_loss_rate(data["Rho"], data["CLR (C=1e5)"], data["CLR (Theoritic)"], label="CLR (C=1e5)")
+    plot_loss_rate(data["Rho"], 10*[0], data["CLR (Theoritic)"], label="CLR (C=1e3, 1e5)")
+    # plot_loss_rate(data["Rho"], data["CLR (C=1e3)"], data["CLR (Theoritic)"], label="CLR (C=1e3)")
+    # plot_loss_rate(data["Rho"], data["CLR (C=1e5)"], data["CLR (Theoritic)"], label="CLR (C=1e5)")
 
     set_trace()
 

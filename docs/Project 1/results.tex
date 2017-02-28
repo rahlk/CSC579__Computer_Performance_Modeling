@@ -10,6 +10,9 @@
 \usepackage{times}
 \usepackage{wrapfig}
 \usepackage{capt-of}
+\newcommand{\tion}[1]{Task~\ref{#1}}
+\newcommand{\fig}[1]{Fig.~\ref{#1}}
+
 \title{\textbf{Simulation Project --- 1}}
 \author{Rahul Krishna}
 \affil{North Carolina State University\\Email: \href{mailto:rkrish11@ncsu.edu}{rkrish11@ncsu.edu}\thanks{Source code: \url{https://github.com/rahlk/CSC579__Computer_Performance_Modeling}}}
@@ -17,7 +20,8 @@
 
 \begin{document}
 \maketitle
-\section*{Task 1}
+\section{Task 1}
+\label{task1}
 \textit{Let us define the customer loss rate
  (CLR) as: CLR = $\frac{X}{N}$. Let the queue capacity K = 20. Plot the CLR against the value of
  $\rho$, for $\rho$ = 0.05 to $\rho$ = 0.95, in increments of 0.10. Submit two graphs: one for C = 1000 and one for C = 100000. Do you see any difference in the two plots? If so, can you explain the difference? If not, why do you think there is no difference? Explain your answer. Did you expect these results before running the experiment?\\}
@@ -40,10 +44,20 @@
  
  \end{enumerate}
 
-\section*{Task 2}
+\section{Task 2}
+\label{task2}
+
+\input{task2.tex}
+
 \textit{Now let us fix $\rho = 0.85$. Plot the CLR against the value of the queue capacity K, as K increases from 10 to 100 in increments of 10. Explain the behavior of the plots as K increases, and especially, the rate of change in the CLR as a function of K . Is this expected? Also,explain any differences in the two graphs due to the length of each simulation run.} \\
+The plots are shown in Fig. \ref{fig3}. The findings follow from that of \tion{task1}: 
+\begin{enumerate}
+ \item We can notice that there is a non-zero drop rate at the beginning with $K=10$. After that the drop rate is zero.
+ \item The drop rate at $K=10$ with $C=1000$ is slightly larger than at $C=10^5$ because of the number of trial at $C=10^5$ is considerably larger that $C=1000$ (two orders of magnitude).
+\end{enumerate}
 
-The plots are shown in Fig. \ref{fig3} and Fig. \ref{fig4}
-
+\section{Task 3}
+\label{task3}
+\input{task3.tex}
 \end{document}
 
