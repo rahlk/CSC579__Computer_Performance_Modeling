@@ -3,10 +3,11 @@ from __future__ import division
 
 from pdb import set_trace
 from Utils.SimUtil import Simulation
-
+from Utils.MscUtil import Params
 
 if __name__ == "__main__":
 
-    sim = Simulation()
-    sim = sim.run_simulation(C=1e5)
+    p = Params(K=5, dicipline="FCFS", C=1e5, rho = 0.95, lmbd=1)
+    sim = Simulation(params=p)
+    sim = sim.run_simulation()
     set_trace()
