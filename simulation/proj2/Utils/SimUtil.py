@@ -53,6 +53,18 @@ class Simulation:
         self.num_serviced = 0
         self.total_wait = sum([c.get_wait_time() for c in self.customers])
 
+    def get_customer_priority(self, N):
+        if self.params.service_type == "FCFS":
+            return
+        elif self.params.service_type == "LCFS":
+            return
+        elif self.params.service_type == "SJF":
+            return
+        elif self.params.service_type == "LJF":
+            return
+
+
+
     def generate_interarrival(self):
         return rand.exponential(self.params.rho)
 
