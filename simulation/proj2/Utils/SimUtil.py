@@ -83,7 +83,6 @@ class Simulation:
 
         else:  #  Else add to queue
             c.serviced = True
-
             self.queue.append(c)
 
     def handle_depart_event(self):
