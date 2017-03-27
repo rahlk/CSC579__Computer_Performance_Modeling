@@ -14,12 +14,14 @@ It is the smallest number expressible as the sum of two positive cubes in
 two different ways.
 """
 
+
 class Simulation:
     def __init__(self, params=Params):
 
         "Initialize inital params"
         self.queue = list()
-        self.priority_queue = {"1": list(), "2": list(), "3": list(), "4": list()}
+        self.priority_queue = {"1": list(), "2": list(), "3": list(),
+                               "4": list()}
         self.params = params
         self.customers = list()
         self.t_depart = float('inf')
@@ -77,12 +79,18 @@ class Simulation:
         elif self.params.service_type == "SJF":
 
             sorted_args = sorted(self.queue, key=lambda X: X.service_time)
-            for k, n in enumerate(sorted_args):
-                c = sorted_args[k]
-                c.priority = k
-                sorted_args[k] = c
 
-            return sorted_args
+            def find(n):
+                for i, c in enumerate(self.queue):
+                    if c == n:
+                        return i
+
+            for k, n in enumerate(sorted_args):
+                c = self.queue[find(n)]
+                c.priority = k
+                self.queue[find(n)] = c
+
+            return self.queue
 
     def handle_arrive_event(self):
         self.num_arrive += 1  # Increment arrival
@@ -174,7 +182,7 @@ class Simulation:
                 self.handle_depart_event()
 
     def run_simulation(self):
-        while self.num_serviced < self.params.C:
+        while self.num_depart < self.params.C:
             self.advance_time()
 
         return self

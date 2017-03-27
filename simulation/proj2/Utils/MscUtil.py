@@ -8,7 +8,7 @@ class Params:
     Set parameters
     """
 
-    def __init__(self, K=5, dicipline="FCFS", C=1e6, rho=0.95, lmbd=1.0, lmbd_disk=0.5, K_io=30):
+    def __init__(self, dicipline, K=5, C=1e6, rho=0.95, lmbd=1.0, lmbd_disk=0.5, K_io=30):
         self.K = K
         self.C = C
         self.rho = rho

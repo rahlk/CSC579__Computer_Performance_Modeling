@@ -20,12 +20,12 @@ from Utils.MscUtil import Params
 
 if __name__ == "__main__":
 
-    for decip in ["FCFS", "LCFS", "SJF"]:
+    for decip in ["SJF", "LCFS", "FCFS"]:
         print(decip)
         for r in np.arange(0.05,1,0.1):
             waits = []
-            for _ in xrange(30):
-                sim = Simulation(params = Params(K=40, dicipline="FCFS", C=1e5, rho = r, lmbd=1))
+            for _ in xrange(10):
+                sim = Simulation(params = Params(K=40, dicipline=decip, C=1e5, rho = r, lmbd=1))
                 sim = sim.run_simulation()
                 waits.append(np.mean([cust.get_wait_time() for cust in sim.customers]))
             print("{}\t{}\t{}\t{}".format(r, np.mean(waits),
