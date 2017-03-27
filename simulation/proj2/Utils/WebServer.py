@@ -46,7 +46,7 @@ class WebServer:
         elif 0.2 <= random < 0.3:
             return "Disk 3"
         elif 0.3 <= random < 1:
-            return "exit_system"
+            return "system"
 
     @staticmethod
     def all_empty(queue):
@@ -63,13 +63,14 @@ class WebServer:
         return rand.exponential(self.params.lmdb_disk)
 
     def disk_arrive_event(self, c, disk):
-        self.num_disk_arrive += 1  # Increment arrival
-        self.t_disk_arrive = (disk, c.depart_time)
+        self.num_disk_arrive += 1  # Increment disk arrival
+        self.t_arrive = (disk, c.depart_time) #  Mark as disk arrival
+        c.disk_arrival_time = c.depart_time
 
         #  If the queue is full kick out the customer
         if len(self.disk_queue[disk]) >= self.params.K_io:
-            c.disk_depart_time = c.disk_arrival_time
-            self.t_disk_depart = c.disk_depart_time
+            c.disk_depart_time = c.disk_arrival_time # No service. Disk depart time same as disk arrival time
+            self.t_depart = (disk, c.disk_depart_time)
             self.num_disk_reject += 1
             c.serviced = False
             self.customers.append(c)
@@ -85,7 +86,7 @@ class WebServer:
         if len(self.disk_queue[disk]) > 0:
             c = self.disk_queue[disk].pop(0)
             c.disk_depart_time = self.clock + c.disk_service_time
-            self.t_disk_depart = (disk, c.disk_depart_time)
+            self.t_depart = (disk, c.disk_depart_time)
             self.handle_cpu_arrive(c)
         else:
             self.t_disk_depart = float("inf")
@@ -95,17 +96,17 @@ class WebServer:
 
         if c is None:  # New arrival
             c = Customer(id=self.num_cpu__arrive)
-            self.t_arrive = self.clock + self.generate_interarrival()
+            self.t_arrive = ("system", self.clock + self.generate_interarrival())
             c.arrival_time = self.t_arrive
         else:  # Arrival from a disk
             c.re_serve += 1
-            self.t_arrive = c.disk_depart_time
+            self.t_arrive = ("system", c.disk_depart_time)
             c.arrival_time = self.t_arrive
 
         # If the queue is full kick out the customer
         if len(self.queue) >= self.params.K_cpu:
             c.depart_time = c.arrival_time
-            self.t_depart = ("exit_system", c.depart_time)
+            self.t_depart = ("system", c.depart_time)
             self.num_reject += 1
             c.serviced = False
             self.customers.append(c)
@@ -125,7 +126,7 @@ class WebServer:
             to_disk = self.random_queue() # Determine if she/he needs to be sent to disk
             c.depart_time = self.clock + c.service_time # Get cpu service time
 
-            if to_disk == "exit_system": # If customer leaves the system
+            if to_disk == "system": # If customer leaves the system
                 self.customers.append(c)
                 self.t_depart = (to_disk, c.depart_time)
             else: # Send to I/O disk
@@ -135,23 +136,17 @@ class WebServer:
             self.t_depart = float("inf")
 
     def advance_time(self):
-        self.clock = min(self.t_arrive, self.t_depart)
-        if self.t_arrive < self.t_depart:
-            if self.params.service_type == "PrioNP" \
-                    or self.params.service_type == "PrioP":
 
-                self.handle_multiqueue_arrive()
+        self.clock = min(self.t_arrive[1], self.t_depart[1])
 
-            else:
-                self.handle_arrive_event()
+        if self.t_arrive[1] < self.t_depart[1]:
+                self.handle_cpu_arrive()
         else:
-            if self.params.service_type == "PrioNP" \
-                    or self.params.service_type == "PrioP":
-
-                self.handle_multiqueue_depart()
+            if self.t_depart[0] == "system":
+                self.handle_cpu_depart()
 
             else:
-                self.handle_depart_event()
+                self.disk_depart_event(self.t_depart[0])
 
     def run_simulation(self):
         while self.num_serviced < self.params.C:
