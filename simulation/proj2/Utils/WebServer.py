@@ -20,10 +20,10 @@ class WebServer:
         }
         self.params = params
         self.customers = list()
-        self.t_depart = float('inf')
+        self.t_depart = ("system", float('inf'))
         self.t_disk_depart = float('inf')
         self.num_in_system = len(self.queue)
-        self.t_arrive = self.generate_interarrival()
+        self.t_arrive = ("system", self.generate_interarrival())
         self.t_disk_arrive = self.generate_interarrival()
 
         self.clock = 0
