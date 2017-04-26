@@ -42,11 +42,11 @@ def run_exponential():
             slowdown[nan_id] = np.mean(slowdown[nan_id-5:nan_id-1])
 
         for i, (e, slow) in enumerate(zip(edges, slowdown)):
-            print("{:.2f}\t{:.0f}".format(e, slow))
-            print("{:.2f}\t{:.0f}".format(e, slow), file=open(os.path.join(root, "plots/task4/MM1/", decip), "a+"))
+            print("{}\t{:.0f}".format(i+1, slow))
+            print("{}\t{:.0f}".format(i+1, slow), file=open(os.path.join(root, "plots/task4/MM1/", decip), "a+"))
 
     print("\n------------------\n")
-    set_trace()
+    # set_trace()
 
 
 def run_pareto():
@@ -71,14 +71,14 @@ def run_pareto():
             slowdown[nan_id] = np.mean(slowdown[nan_id-5:nan_id-1])
 
         for i, (e, slow) in enumerate(zip(edges, slowdown)):
-            print("{:.2f}\t{:.0f}".format(e, slow))
-            print("{:.2f}\t{:.0f}".format(e, slow), file=open(os.path.join(root, "plots/task4/MG1/", decip), "a+"))
+            print("{}\t{:.0f}".format(i+1, slow))
+            print("{}\t{:.0f}".format(i+1, slow), file=open(os.path.join(root, "plots/task4/MG1/", decip), "a+"))
 
         print("\n------------------\n")
-    set_trace()
+    # set_trace()
 
 
 if __name__ == "__main__":
-    run_pareto()
-    # run_exponential()
+    # run_pareto()
+    run_exponential()
     set_trace()
