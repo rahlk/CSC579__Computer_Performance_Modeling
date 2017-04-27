@@ -1,6 +1,6 @@
 set terminal postscript eps enhanced color 15 "Helvetica"
 set output "sjf.eps"
-set title "First Come First Serve"
+set title "Shortest Job First"
 
 load '~/.config/grid.cfg'
 load '~/.config/greys.pal'
