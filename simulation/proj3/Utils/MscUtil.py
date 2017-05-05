@@ -25,9 +25,10 @@ class Customer:
 
     def __init__(self, id):
         self.id = id
+        self.wait_time = 0
+        self.system_time = 0
         self.arrival_time = 0
         self.service_time = 0
-        self.wait_time = 0
         self.depart_time = self.arrival_time
 
     def get_system_time(self):
