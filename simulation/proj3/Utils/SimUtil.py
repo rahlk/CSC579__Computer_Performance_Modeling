@@ -85,9 +85,9 @@ class Simulation:
         c.arrival_time = self.clock  # Set customer arrival time
         c.service_time = self.__generate_service_time()  # Generate customer service time
         self.t_arrive = self.clock + self.__generate_interarrival()  # Next customer arrival time
-        c.wait_time = abs(
+        c.system_time = abs(
             c.service_time + self.t_arrive - self.t_depart) / 3  # Compute mean wait time of the customer (#servers=3)
-        c.system_time = abs(self.t_arrive - self.t_depart) / 3  # Compute mean wait time of the customer (#servers=3)
+        c.wait_time = abs(c.system_time - c.service_time) / 3  # Compute mean wait time of the customer (#servers=3)
         self.queue.append(c)  # Append the current customer to the queue
         self.t_depart = self.queue[self.__next_queue_element()].service_time + self.clock
 

@@ -59,7 +59,7 @@ def simulate(l, C, L, M):
         "Simulation Details:\nAverage Wait Time    : Mean: {}; Confidence:{}".format(
             round(w_mean, 2), round(1.6 * np.std(w), 2)))
     print("Average System Time  : Mean: {}; Confidence:{}".format(
-            round(np.mean(s), 2), round(1.6 * np.std(s), 2)))
+            round(s_mean, 2), round(1.6 * np.std(s), 2)))
     print("Master clock at the end of simulation: {}\n".format(
         round(sim.clock, 2)))
 
@@ -67,9 +67,9 @@ def simulate(l, C, L, M):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--l', default=0.006, type=float,
+    parser.add_argument('--l', default=0.0006, type=float,
                         help='Lamdba for the distribution of interarrival '
-                             'times.\n DEFAULT --l 0.006.')
+                             'times.\n DEFAULT --l 0.0006.')
     parser.add_argument('--C', default=100000, type=int,
                         help='Number of customed server before the program '
                              'terminates.\n DEFAULT --C 100000')
